@@ -1,0 +1,47 @@
+<header>
+    <div class="upper-header">
+        <div class="logo-container">
+            <h1>LOGO</h1>
+        </div>
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" placeholder="Search for products">
+                <button><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+        </div>
+        <div class="other-details-container">
+            <div>
+                <p>Customer Service</p>
+                <h4>+91 12345 56789</h4>
+            </div>    
+        </div>
+    </div>
+    <div class="lower-header">
+        <div class="category-container" (click)="isCategoryDropDownActive = !isCategoryDropDownActive">
+            <div><span class="bars"><i class="fa-solid fa-bars"></i></span>Category</div>
+            <div><i class="fa-solid fa-chevron-down"></i></div>
+
+            <div class="drop-down" [@expandPanel]="isCategoryDropDownActive ? 'expanded' : 'collapsed'">
+                <ul>
+                    <li><a href="#">Shirts</a></li>
+                    <li><a href="#">Jeans</a></li>
+                    <li><a href="#">Sleepwear</a></li>
+                    <li><a href="#">Sportswear</a></li>
+                    <li><a href="#">Jackets</a></li>
+                    <li><a href="#">shoes</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="nav-container">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Shop</a></li>
+                <li><a href="#">Shop Details</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+        <div class="freatures-container">
+            <div class="cart-container"><i class="fa-solid fa-cart-shopping"></i> <span class="cart-no">0</span></div>
+        </div>
+    </div>
+</header>
