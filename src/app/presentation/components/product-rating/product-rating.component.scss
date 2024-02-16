@@ -1,0 +1,14 @@
+$yellow:#FFD333;
+$light-font-color:#6C757D; 
+
+.rating-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $yellow;
+}
+
+.no-reviews{
+    color: $light-font-color;
+}
