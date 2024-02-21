@@ -1,0 +1,122 @@
+.slider-container{
+    width: 100%;
+    height: 500px;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 20px;
+
+    .slides-container{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+
+        .slide{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            display: none;
+            animation: fade-animation 200ms linear;
+
+            &.active{
+                display: block;
+            }
+        }
+
+        .image-container{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+
+            img{
+                width: 100%;
+            }
+        }
+
+        .details-container{
+            width: 100%;
+            height: 100%;
+            z-index: 4;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: rgba($color: #000, $alpha: 0.3);
+            color: #fff;
+
+
+            h2{
+                font-size: 60px;
+                font-weight: 500;
+                margin-bottom: 20px;
+            }
+
+            p{
+                font-size: 18px;
+                font-weight: 500;
+                margin-bottom: 18px;
+            }
+
+            button{
+                padding: 10px 20px;
+                font-size: 18px;
+                font-weight: 500;
+                color: #fff;
+                border: 1px solid #fff;
+                background-color: transparent;
+                cursor: pointer;
+                font-weight: 500;
+
+                &:hover{
+                    background-color: #fff;
+                    color: #000;
+                }
+            }
+        }
+    }
+
+    .dots-container{
+        display: flex;
+        position: absolute;
+        width: 100%;
+        bottom: 40px;
+        left: 0;
+        z-index: 5;
+        display: flex;
+        justify-content: center;
+
+        .dot{
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 1px solid #fff;
+            margin-right: 10px;
+            cursor: pointer;
+
+            &.active{
+                width: 30px;
+                background-color: #fff;
+            }
+        }
+    }
+}
+
+@keyframes fade-animation {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}

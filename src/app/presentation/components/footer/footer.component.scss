@@ -104,6 +104,18 @@ footer{
                 color: #fff;
             }
         }
+
+        &:hover{
+            .item-icon{
+                color:  $yellow;
+            }
+
+            .item-details{
+                a{
+                    color: $yellow;
+                }
+            }
+        }
     }
 }
 

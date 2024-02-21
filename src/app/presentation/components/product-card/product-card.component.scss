@@ -10,9 +10,59 @@ $yellow:#FFD333;
     .image-container{
         width: 100%;
         height: calc(100% - 110px);
+        overflow: hidden;
+        position: relative;
 
         img{
             width: 100%;
+            transition: transform 500ms linear;
+        }
+
+        .hover-box{
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            opacity: 0;
+            transition:  opacity 500ms linear;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .action-list{
+                display: flex;
+
+                button{
+                    width: 45px;
+                    height: 45px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border: 1px solid $dark-font-color;
+                    font-size: 22px;
+                    cursor: pointer;
+                    margin-right: 10px;
+                    transition: background-color 400ms linear, color 400ms linear;
+
+                    &:hover{
+                        background-color: #000;
+                        color: $yellow;
+                    }
+                }
+            }
+        }
+    }
+
+    .image-container:hover{
+        img{
+            transform: scale(1.2);
+        }
+    
+        .hover-box{
+            opacity: 0.7;
         }
     }
 

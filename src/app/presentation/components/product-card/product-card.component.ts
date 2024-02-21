@@ -8,6 +8,7 @@ import { ProductRatingComponent } from '../product-rating/product-rating.compone
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.scss'
 })
+
 export class ProductCardComponent {
 
 }
