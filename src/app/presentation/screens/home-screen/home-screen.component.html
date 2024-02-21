@@ -1,14 +1,23 @@
 <app-header></app-header>
 <main>
     <app-slider></app-slider>
-    <div class="featured-products-cotnainer">
-        <h2>FEATURED PRODUCTS</h2>
+
+    <app-section title="Categories">
+        <div class="category-list">
+            <app-category-card></app-category-card>
+            <app-category-card></app-category-card>
+            <app-category-card></app-category-card>
+            <app-category-card></app-category-card>
+        </div>
+    </app-section>
+    <app-section title="Featured products">
         <div class="products-list">
             <app-product-card></app-product-card>
             <app-product-card></app-product-card>
             <app-product-card></app-product-card>
             <app-product-card></app-product-card>
         </div>
-    </div>
+    </app-section>
+
 </main>
 <app-footer></app-footer>

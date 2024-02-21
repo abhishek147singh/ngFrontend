@@ -1,0 +1,17 @@
+$bg-color:#F5F5F5;
+$light-font-color:#6C757D;
+$dark-font-color:#3D464D;
+$yellow:#FFD333; 
+
+section{
+    width: 100%;
+    background-color: $bg-color;
+    margin-bottom: 50px;
+
+    .title{
+        margin-bottom: 20px;
+        color: $light-font-color;
+        font-size: 30px;
+        font-weight: 600;
+    }
+}

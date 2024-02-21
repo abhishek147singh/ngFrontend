@@ -6,23 +6,13 @@ main{
     background-color: $bg-color;
     padding-top: 40px;
     padding-inline: 20px;
-    
-    .featured-products-cotnainer{
-        width: 100%;
-        background-color: $bg-color;
-
-        h2{
-            margin-bottom: 20px;
-        }
-
-        .products-list{
-            width: 100%;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-gap: 20px;
-            padding: 10px 0;
-        }
-    }
 }
 
+.products-list,.category-list{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+    padding: 10px 0;
+}
 
