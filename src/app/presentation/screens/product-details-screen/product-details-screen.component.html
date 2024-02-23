@@ -1,1 +1,47 @@
 <app-breadcrumb [urlArrays]="[{title:'home', url:'/'}]" [activeUrlTitle]="'Product Name'"></app-breadcrumb>
+<div class="product-details-container">
+    <div class="product-image-container">
+        <img src="./../../../../assets/img/product-1.jpg" alt="" srcset="">
+    </div>
+    <div class="product-text-details-container">
+        <h1>Product Name</h1>
+        <div class="rating-container">
+            <app-product-rating [rating]="4.5" [noReviews]="11" [xPostion]="'flex-start'" [reviewWithText]="true"></app-product-rating>
+        </div>
+
+        <h2>$ 100.00</h2>
+
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem ducimus aliquam asperiores quibusdam labore reprehenderit, ut veniam recusandae repudiandae sapiente.</p>
+
+        <div class="actions">
+            <app-incr-decr-button></app-incr-decr-button>
+            <div class="add-to-cart-btn">
+                <div class="icon">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </div>
+                <div class="text">
+                    Add To Cart
+                </div>
+            </div>
+        </div>
+
+        <div class="share-links-container">
+            <div class="text">
+                Share On
+            </div>
+            <div class="links">
+                <a routerLink="/" class="link"><i class="fa-brands fa-facebook-f"></i></a>
+                <a routerLink="/" class="link"><i class="fa-brands fa-x-twitter"></i></a>
+                <a routerLink="/" class="link"><i class="fa-brands fa-linkedin"></i></a>
+                <a routerLink="/" class="link"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="review-container">
+        <div class="product-description">
+            <h2>Product Description</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque iste inventore nihil ad odio praesentium quis provident, eius enim nisi molestias asperiores illum nulla accusantium explicabo quasi perspiciatis quam aliquam, esse eum vero. Sunt, sequi autem fugiat debitis quidem officiis pariatur eveniet soluta vero labore? Voluptatum debitis necessitatibus omnis iste.</p>
+        </div>
+    </div>
+</div>

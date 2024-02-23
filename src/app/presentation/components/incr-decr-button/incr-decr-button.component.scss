@@ -1,0 +1,32 @@
+$light-font-color:#6C757D;
+$dark-font-color:#3D464D;
+$yellow:#FFD333; 
+
+.incr-decr-button{
+    display: grid;
+    height: 40px;
+    grid-template-columns: 40px 40px 40px;
+
+    button,div{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius:0;
+        border: none;
+        outline: none;
+        font-size: 20px;
+    }
+
+    button{
+        background-color: $yellow;
+        color: $dark-font-color;
+        cursor: pointer;
+    }
+
+    div{
+        background-color: #ccc;
+        color: $light-font-color;
+    }
+}
