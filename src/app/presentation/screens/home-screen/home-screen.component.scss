@@ -4,11 +4,11 @@ main{
     height: fit-content;
     min-height: calc(100vh - 434px);
     background-color: $bg-color;
-    padding-top: 40px;
+    padding-top: 20px;
     padding-inline: 20px;
 }
 
-.products-list,.category-list{
+.list{
     width: 100%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
