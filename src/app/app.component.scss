@@ -1,0 +1,9 @@
+$bg-color:#F5F5F5;
+
+main{
+    height: fit-content;
+    min-height: calc(100vh - 434px);
+    background-color: $bg-color;
+    padding-top: 20px;
+    padding-inline: 20px;
+}

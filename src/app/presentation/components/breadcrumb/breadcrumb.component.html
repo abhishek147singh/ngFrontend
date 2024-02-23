@@ -1,0 +1,8 @@
+<div class="breadcrumb">
+    <ul>
+        @for (url of urlArrays; track $index) {
+            <li><a [routerLink]="url.url">{{url.title | titlecase}} </a></li> 
+        }
+        <li class="active">{{activeUrlTitle}}</li>
+    </ul>
+</div>
