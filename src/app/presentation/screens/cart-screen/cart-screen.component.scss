@@ -1,0 +1,171 @@
+$light-font-color:#6C757D;
+$dark-font-color:#3D464D;
+$yellow:#FFD333; 
+
+.cart-container{
+    width: 100%;
+    margin: 20px 0;
+    display: grid;
+    grid-template-columns: 1fr 450px;
+
+    .product-list{
+        width: 100%;
+        padding-right: 25px;
+    }  
+
+    .actions-cards{
+        width: 100%;
+    }    
+}
+
+.apply-coupon-card{
+    display: flex;
+    height: 45px;
+
+    .input-container{
+       width: calc(100% - 150px);
+       height: 100%; 
+
+       input{
+            width: 100%;
+            height: 100%;
+            padding: 10px 20px;
+            color: $light-font-color;
+            border: none;
+            outline: none;
+            font-size: 16px;
+       }   
+    }
+
+    .button-container{
+        width: 150px;
+        height: 100%;
+
+        button{
+            width: 100%;
+            height: 100%;
+            padding: 10px 15px;
+            background-color: $yellow;
+            color: $dark-font-color;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 500;
+        }
+    }
+}
+
+.cart-summary-card{
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 20px;
+
+    h3{
+        font-size: 22px;
+        font-weight: 600;
+        color: $light-font-color;
+        margin: 10px 0;
+    }
+
+    .card{
+        width: 100%;
+        padding: 20px 30px;
+        background-color: #fff;
+
+        .row{
+            width: 100%;
+            margin: 10px 0 15px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            &.main{
+                margin: 15px 0;
+
+                .title{
+                    font-size: 22px;
+                    font-weight: 600;
+                }
+
+                .value{
+                    font-size: 22px;
+                    font-weight: 600;
+                }
+            }
+
+            .title{
+                font-size: 20px;
+                font-weight: 500;
+                color: $dark-font-color;
+            }
+
+            .value{
+                font-size: 18px;
+                font-weight: 500;
+                color: $dark-font-color;
+            }
+        }
+
+        .procced-btn{
+            margin: 20px 0 15px 0;
+            width: 100%;
+            height: 60px;
+            font-size: 20px;
+            font-weight: 500;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: $yellow;
+            color: $dark-font-color;
+            border: none;
+            outline: none;
+            cursor: pointer;
+        }
+    }
+}
+
+.divider{
+    width: 100%;
+    margin: 10px 0;
+    border-bottom: 2px solid #ccc;
+}
+
+table{
+    thead{
+        th{
+            background-color: $dark-font-color;
+            color: #fff;
+            padding: 10px 15px;
+            font-size: 18px;
+            font-weight: 500;
+        }
+    }
+
+    tbody{
+
+        tr{
+            // display: block;
+            background-color: #fff;
+            margin: 20px 0;
+            // max-height: 80px;
+            // width: 100%;
+        }
+
+        td{
+            padding: 10px 0;
+            height: 100%;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 500;
+            color: $light-font-color;
+            vertical-align: middle;
+
+
+            img{
+                width: 50px;
+            }
+        }
+    }
+}
+

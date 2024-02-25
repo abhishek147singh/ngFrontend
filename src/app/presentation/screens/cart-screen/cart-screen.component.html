@@ -1,0 +1,60 @@
+<app-breadcrumb [urlArrays]="[{title:'home', url:'/'}, {title:'shop', url:'/'}]" [activeUrlTitle]="'Shoping cart'"></app-breadcrumb>
+<div class="cart-container">
+    <div class="product-list">
+        <table width="100%">
+            <thead>
+                <tr>
+                    <th width="30%">Products</th>
+                    <th width="15%">Price</th>
+                    <th width="20%">Quantity</th>
+                    <th width="15%">Total</th>
+                    <th width="20%">Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <img src="./../../../../assets/img/product-1.jpg" alt="product image"> Product Name
+                    </td>
+                    <td>$150</td>
+                    <td>1</td>
+                    <td>$150</td>
+                    <td>x</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="actions-cards">
+        <div class="apply-coupon-card">
+            <div class="input-container">
+                <input type="text">
+            </div>
+            <div class="button-container">
+                <button>Apply Coupon</button>
+            </div>
+        </div>
+        <div class="cart-summary-card">
+            <h3>CART SUMMARY</h3>
+            <div class="card">
+                <div class="row">
+                    <div class="title">Subtotal</div>
+                    <div class="value">$150</div>
+                </div>
+                <div class="row">
+                    <div class="title">Shipping</div>
+                    <div class="value">$10</div>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="row main">
+                    <div class="title">Total</div>
+                    <div class="value">$160</div>
+                </div>
+
+                <button class="procced-btn">Procced To Checkout</button>
+            </div>
+        </div>
+    </div>
+
+</div>
