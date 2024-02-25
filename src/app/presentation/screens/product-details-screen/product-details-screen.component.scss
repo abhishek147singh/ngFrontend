@@ -178,5 +178,13 @@ $yellow:#FFD333;
 
 .form-container{
     width: 100%;
-    
+
+}
+
+.list{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+    padding: 10px 0;
 }
