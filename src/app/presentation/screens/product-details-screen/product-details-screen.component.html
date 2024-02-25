@@ -39,9 +39,40 @@
     </div>
 
     <div class="review-container">
-        <div class="product-description">
-            <h2>Product Description</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque iste inventore nihil ad odio praesentium quis provident, eius enim nisi molestias asperiores illum nulla accusantium explicabo quasi perspiciatis quam aliquam, esse eum vero. Sunt, sequi autem fugiat debitis quidem officiis pariatur eveniet soluta vero labore? Voluptatum debitis necessitatibus omnis iste.</p>
-        </div>
+        
+        <app-tab>
+            <app-tab-content title="Description">
+                <div class="product-description">
+                    <h2>Product Description</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque iste inventore nihil ad odio praesentium quis provident, eius enim nisi molestias asperiores illum nulla accusantium explicabo quasi perspiciatis quam aliquam, esse eum vero. Sunt, sequi autem fugiat debitis quidem officiis pariatur eveniet soluta vero labore? Voluptatum debitis necessitatibus omnis iste.</p>
+                </div>
+            </app-tab-content>
+
+            <app-tab-content title="Information">
+                <div class="information">
+                    <h2>Product Information</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque iste inventore nihil ad odio praesentium quis provident, eius enim nisi molestias asperiores illum nulla accusantium explicabo quasi perspiciatis quam aliquam, esse eum vero. Sunt, sequi autem fugiat debitis quidem officiis pariatur eveniet soluta vero labore? Voluptatum debitis necessitatibus omnis iste.</p>
+                </div>
+            </app-tab-content>
+
+            <app-tab-content title="Reviews">
+                <div class="review-rating-container">
+                    <div class="review-list-container">
+                        <h2>1 review for "Product Name"</h2>
+                        <div class="review-list">
+                            <app-review-card></app-review-card>
+                        </div>
+                    </div>
+                    <div class="review-form">
+                        <h2>Leave a review</h2>
+                        <p class="info">Your email address will not be published. Required fields are marked *</p>
+                        <div class="form-container">
+                            <app-review-form></app-review-form>
+                        </div>
+                    </div>
+                </div>
+            </app-tab-content>
+
+        </app-tab>
     </div>
 </div>

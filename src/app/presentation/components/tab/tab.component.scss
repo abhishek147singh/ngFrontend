@@ -1,0 +1,37 @@
+$light-font-color:#6C757D;
+$dark-font-color:#3D464D;
+$active-tab-bg:#f5f5f5;
+
+.tab{
+    width: 100%;
+    background-color: #fff;
+
+    .header{
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        border-bottom: 1px solid #ccc;
+
+        button{
+            padding: 10px;
+            font-size: 18px;
+            color: $light-font-color;
+            background-color: #fff;
+            border: none;
+            outline: none;
+            cursor: pointer;
+
+            &.active{
+                color: $dark-font-color;
+                background-color: $active-tab-bg;
+                border: 1px solid #ccc;
+                border-bottom: none;
+            }
+        }
+    }
+
+    .body{
+        padding: 20px 0 10px 0;
+    }
+}

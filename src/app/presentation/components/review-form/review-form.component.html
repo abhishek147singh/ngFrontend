@@ -1,0 +1,28 @@
+<div class="form-container">
+    <form [formGroup]="reviewForm">
+        
+        <div class="field rating-field">
+            <input type="number" [hidden]="true" formControlName="rating">
+            <div>
+                <label>Your Rating</label>:<app-rating-input></app-rating-input>
+            </div>
+        </div>
+        
+        <div class="field">
+            <label for="review">Your Review</label>
+            <textarea id="review" cols="30" rows="5" formControlName="review"></textarea>
+        </div>
+        
+        <div class="field">
+            <label for="Name">Your Name</label>
+            <input type="text" id="Name" formControlName="name">
+        </div>
+
+        <div class="field">
+            <label for="Email">Your Email</label>
+            <input type="text" id="Email" formControlName="email">
+        </div>
+
+        <button class="review-btn">Leave Your Review</button>
+    </form>
+</div>

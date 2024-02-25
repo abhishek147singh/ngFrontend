@@ -1,34 +1,55 @@
 <div class="rating-container" [ngStyle]="{'justifyContent':xPostion}">
-    @if (rating <= 0.5) {
-        <i class="fa-solid fa-star-half-stroke"></i>
-    }@else {
+    
+    @if (rating >= 1) {
         <i class="fa-solid fa-star"></i>
+    }@else {
+        @if (rating >= 0.5) {
+            <i class="fa-solid fa-star-half-stroke"></i>
+        }@else {
+            <i class="fa-regular fa-star"></i>
+        }
     }
 
-    @if (rating <= 1.5) {
-        <i class="fa-solid fa-star-half-stroke"></i>
-    }@else {
+    @if (rating >= 2) {
         <i class="fa-solid fa-star"></i>
+    }@else {
+        @if (rating >= 1.5) {
+            <i class="fa-solid fa-star-half-stroke"></i>
+        }@else {
+            <i class="fa-regular fa-star"></i>
+        }
     }
 
-    @if (rating <= 2.5) {
-        <i class="fa-solid fa-star-half-stroke"></i>
-    }@else {
+    @if (rating >= 3) {
         <i class="fa-solid fa-star"></i>
+    }@else {
+        @if (rating >= 2.5) {
+            <i class="fa-solid fa-star-half-stroke"></i>
+        }@else {
+            <i class="fa-regular fa-star"></i>
+        }
     }
 
-    @if (rating <= 3.5) {
-        <i class="fa-solid fa-star-half-stroke"></i>
-    }@else {
+    @if (rating >= 4) {
         <i class="fa-solid fa-star"></i>
+    }@else {
+        @if (rating >= 3.5) {
+            <i class="fa-solid fa-star-half-stroke"></i>
+        }@else {
+            <i class="fa-regular fa-star"></i>
+        }
     }
 
-    @if (rating <= 4.5) {
-        <i class="fa-solid fa-star-half-stroke"></i>
-    }@else {
+    @if (rating >= 5) {
         <i class="fa-solid fa-star"></i>
+    }@else {
+        @if (rating >= 4.5) {
+            <i class="fa-solid fa-star-half-stroke"></i>
+        }@else {
+            <i class="fa-regular fa-star"></i>
+        }
     }
-
+        
     <span class="no-reviews" >({{noReviews}} {{reviewWithText ? 'Reviews' : '' }})</span>
 
 </div>

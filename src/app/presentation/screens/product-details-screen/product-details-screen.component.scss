@@ -121,7 +121,8 @@ $yellow:#FFD333;
     }
 }
 
-.product-description{
+.product-description,.information{
+    
     h2{
         margin: 5px 0 15px 0;
         color: $dark-font-color;
@@ -134,4 +135,48 @@ $yellow:#FFD333;
         font-weight: 500;
         color: $light-font-color;
     }
+}
+
+.review-rating-container{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    .review-list-container{
+        width: 100%;
+
+        h2{
+            margin: 5px 0 15px 0;
+            color: $dark-font-color;
+            font-size: 24px;
+            font-weight: 500;
+        }
+
+        .review-list{
+            width: 100%;
+            padding-top: 10px;
+        }
+    }
+
+    .review-form{
+        width: 100%;
+
+        h2{
+            margin: 5px 0 15px 0;
+            color: $dark-font-color;
+            font-size: 24px;
+            font-weight: 500;
+        }
+
+        .info{
+            font-size: 14px;
+            color: $light-font-color;
+            margin: 10px 0;
+        }
+    }
+}
+
+.form-container{
+    width: 100%;
+    
 }
