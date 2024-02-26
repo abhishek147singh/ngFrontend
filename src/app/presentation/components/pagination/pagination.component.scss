@@ -1,0 +1,31 @@
+$light-font-color:#6C757D;
+$dark-font-color:#3D464D;
+$yellow:#FFD333;
+
+.pagination{
+    height: 40px;
+    display: flex;
+
+    button{
+        padding: 8px 15px;
+        border: 1px solid #ccc;
+        color: $yellow;
+        background-color: #fff;
+        font-size: 18px;
+        font-weight: 500;
+        cursor: pointer;
+
+        &:not(:last-child){
+            border-right: none;
+        }
+
+        &.active{
+            background-color: $yellow;
+            color: #fff;
+        }
+
+        &.disable{
+            color: #6C757D;
+        }
+    }
+}

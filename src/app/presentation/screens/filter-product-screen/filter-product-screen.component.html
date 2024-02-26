@@ -1,0 +1,27 @@
+<app-breadcrumb [urlArrays]="[{title:'home', url:'/'}]" [activeUrlTitle]="'Shop List'"></app-breadcrumb>
+<div class="container">
+    <div class="filter-list">
+
+    </div>
+    <div class="products-container">
+        <div class="header">
+            <button class="menu-btn">Sorting</button>
+            <button class="menu-btn">Showing</button>
+        </div>
+        <div class="product-list">
+            <app-product-card></app-product-card>
+            <app-product-card></app-product-card>
+            <app-product-card></app-product-card>
+            <app-product-card></app-product-card>
+            <app-product-card></app-product-card>
+            <app-product-card></app-product-card>
+            <app-product-card></app-product-card>
+            <app-product-card></app-product-card>
+        </div>
+        
+        <div class="pagination-container">
+            <app-pagination></app-pagination>
+        </div>
+    </div>
+</div>
+
