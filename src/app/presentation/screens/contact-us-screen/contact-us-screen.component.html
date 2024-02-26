@@ -1,0 +1,30 @@
+<app-breadcrumb [urlArrays]="[{title:'home', url:'/'}]" [activeUrlTitle]="'Contact'"></app-breadcrumb>
+<div class="main-container">
+    <app-section title="Contact Us">
+        <div class="container">
+            <div class="contact-form">
+                <form [formGroup]="contactUsForm">
+                    <div class="form">
+                        <app-contact-us-form></app-contact-us-form>
+                    </div>
+                </form>
+            </div>
+            <div class="address-card">
+                <div class="list-item">
+                    <div class="item-icon"><i class="fa-solid fa-location-dot"></i></div>
+                    <div class="item-details">Agra Uttar Pradesh</div>
+                </div>
+
+                <div class="list-item">
+                    <div class="item-icon"><i class="fa-solid fa-envelope"></i></div>
+                    <div class="item-details">admin&#64;example.com</div>
+                </div>
+
+                <div class="list-item">
+                    <div class="item-icon"><i class="fa-solid fa-mobile-screen"></i></div>
+                    <div class="item-details">+91 12345 56789</div>
+                </div>
+            </div>
+        </div>
+    </app-section>
+</div>

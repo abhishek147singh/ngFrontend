@@ -1,0 +1,25 @@
+<div class="form-container">
+    <form [formGroup]="contactUsForm">
+        <div class="field">
+            <label for="Name">Your Name</label>
+            <input type="text" id="Name" formControlName="Name">
+        </div>
+        
+        <div class="field">
+            <label for="Email">Your Email</label>
+            <input type="text" id="Email" formControlName="Email">
+        </div>
+
+        <div class="field">
+            <label for="Subject">Your Subject</label>
+            <input type="text" id="Subject" formControlName="Subject">
+        </div>
+
+        <div class="field">
+            <label for="Message">Your Message</label>
+            <textarea formControlName="Message" id="Message" cols="30" rows="5"></textarea>
+        </div>
+
+        <button class="btn" type="submit">Send Message</button>
+    </form>
+</div>

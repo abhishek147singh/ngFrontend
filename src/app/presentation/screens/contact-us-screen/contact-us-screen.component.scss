@@ -1,0 +1,54 @@
+$light-font-color:#6C757D;
+$dark-font-color:#3D464D;
+$yellow:#FFD333; 
+
+.main-container{
+    margin: 20px 0;
+}
+
+.container{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 500px;
+    padding-bottom: 30px;
+    
+    .contact-form{
+        width: 100%;
+        padding: 20px;
+        background-color: #fff;
+    }
+
+    .address-card{
+        margin-left: 30px;
+        width: calc(100% - 30px);
+        height: fit-content;
+        padding: 20px 40px;
+        background-color: #fff;
+
+        .list-item{
+            width: 100%;
+            display: grid;
+            grid-template-columns: 30px 1fr;
+            margin:0;
+            font-size: 18px;
+
+            .item-icon{
+                width: 30px;
+                height: 40px;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                color: $yellow;
+            }
+
+            .item-details{
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                color: $light-font-color;
+            }
+        }
+    }
+}
