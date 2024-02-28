@@ -1,0 +1,19 @@
+$light-font-color:#6C757D;
+$dark-font-color:#3D464D;
+$yellow:#FFD333; 
+
+.filter-container{
+    background-color: #fff;
+    width: calc(100% - 20px);
+    padding: 30px 20px;
+
+    h3{
+        font-size: 18px;
+        font-weight: 600;
+        color: $dark-font-color;
+    }
+
+    .filter-values{
+        padding-top: 10px;
+    }
+}

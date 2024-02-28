@@ -1,1 +1,11 @@
-<p>filter works!</p>
+<div class="filter-container">
+    <h3>{{heading | uppercase}}</h3>
+
+    <div class="filter-values">
+        <app-filter-check-box [lableText]="'All Prices'" [noProducts]="1000"></app-filter-check-box>
+        <app-filter-check-box [lableText]="'$0 - $100'" [noProducts]="100"></app-filter-check-box>
+        <app-filter-check-box [lableText]="'$100 - $200'" [noProducts]="200"></app-filter-check-box>
+        <app-filter-check-box [lableText]="'$200 - $300'" [noProducts]="50"></app-filter-check-box>
+        <app-filter-check-box [lableText]="'$400 - $500'" [noProducts]="6"></app-filter-check-box>
+    </div>
+</div>

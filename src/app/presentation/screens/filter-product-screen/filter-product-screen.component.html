@@ -1,7 +1,13 @@
 <app-breadcrumb [urlArrays]="[{title:'home', url:'/'}]" [activeUrlTitle]="'Shop List'"></app-breadcrumb>
+<app-back-to-top></app-back-to-top>
 <div class="container">
-    <div class="filter-list">
-
+    
+    <div class="filter-header">
+        <h2>Filters</h2>
+        
+        <div class="filter-list">
+            <app-filter></app-filter>
+        </div>
     </div>
     <div class="products-container">
         <div class="header">

@@ -1,0 +1,30 @@
+button{
+    cursor: pointer;
+    color: #3D464D ;
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 11;
+    animation: goUp 1s infinite alternate;
+    background-color: #FFD333;
+    border: 1px solid #FFD333;
+    padding: 10px 12px;
+    outline: none;
+    display: none;
+
+    &.show{
+        display: inline-block;
+    }
+
+}
+
+
+@keyframes goUp {
+    0%{
+        transform: translateY(0);
+    }
+
+    100%{
+        transform: translateY(-15px);
+    }
+}

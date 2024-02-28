@@ -1,0 +1,18 @@
+<div class="filter-row" (click)="onSelect()">
+    <div class="check-box">
+        @if (isSelected) {
+            <span class="icon-box active">
+                <i class="fa-solid fa-check"></i>
+            </span>    
+        }@else {
+            <span class="icon-box"></span>
+        }
+        
+    </div>
+    <div class="text-details">
+        <div class="text">{{lableText}}</div>
+        <div class="number">
+            {{noProducts}}
+        </div>
+    </div>
+</div>
