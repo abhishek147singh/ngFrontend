@@ -4,6 +4,7 @@ import { ProductDetailsScreenComponent } from './presentation/screens/product-de
 import { CartScreenComponent } from './presentation/screens/cart-screen/cart-screen.component';
 import { ContactUsScreenComponent } from './presentation/screens/contact-us-screen/contact-us-screen.component';
 import { FilterProductScreenComponent } from './presentation/screens/filter-product-screen/filter-product-screen.component';
+import { ShippingScreenComponent } from './presentation/screens/shipping-screen/shipping-screen.component';
 
 export const routes: Routes = [
     {path:'', component:HomeScreenComponent},
@@ -11,4 +12,5 @@ export const routes: Routes = [
     {path:'cart', component:CartScreenComponent},
     {path:'contact-us', component:ContactUsScreenComponent},
     {path:'shop', component:FilterProductScreenComponent},
+    {path:'shipping', component:ShippingScreenComponent},
 ];

@@ -1,0 +1,20 @@
+<div class="stepper">
+
+    @for (step of steps; track $index) {
+        <div class="step">
+            <div class="left"></div>
+            
+            <div class="label" [ngClass]="{'success':step.isSuccess}">
+                <div class="icon-box">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <div class="text">
+                    {{step.title}}
+                </div>
+            </div>
+    
+            <div class="right"></div>
+        </div>    
+    }
+   
+</div>
