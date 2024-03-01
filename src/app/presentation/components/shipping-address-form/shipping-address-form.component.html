@@ -1,0 +1,106 @@
+<div class="shipping-form-container">
+    <!-- <h1>Shipping Address</h1> -->
+
+    <form [formGroup]="shippingForm" (ngSubmit)="onSubmit()">
+
+        <div class="row">
+            <div class="col">
+                <div class="label-box">
+                    <label for="fName">First Name</label>
+                </div>
+                <div class="input-box">
+                    <input type="text" name="fName" formControlName="fName" id="fName">
+                </div>
+            </div>
+            <div class="col">
+                <div class="label-box">
+                    <label for="lName">Last Name</label>
+                </div>
+                <div class="input-box">
+                    <input type="text" name="lName" formControlName="lName" id="lName">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="label-box">
+                    <label for="email">Email</label>
+                </div>
+                <div class="input-box">
+                    <input type="text" name="email" formControlName="email" id="email">
+                </div>
+            </div>
+            <div class="col">
+                <div class="label-box">
+                    <label for="mobile">Mobile Number</label>
+                </div>
+                <div class="input-box">
+                    <input type="text" name="mobile" formControlName="mobile" id="mobile">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="label-box">
+                    <label for="address1">Address Line 1</label>
+                </div>
+                <div class="input-box">
+                    <input type="text" name="address1" formControlName="address1" id="address1">
+                </div>
+            </div>
+            <div class="col">
+                <div class="label-box">
+                    <label for="address2">Address Line 2</label>
+                </div>
+                <div class="input-box">
+                    <input type="text" name="address2" formControlName="address2" id="address2">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="label-box">
+                    <label for="city">City</label>
+                </div>
+                <div class="input-box">
+                    <input type="text" name="city" formControlName="city" id="city">
+                </div>
+            </div>
+            <div class="col">
+                <div class="label-box">
+                    <label for="country">Country</label>
+                </div>
+                <div class="input-box">
+                    <input type="text" name="country" formControlName="country" id="country">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="label-box">
+                    <label for="state">State</label>
+                </div>
+                <div class="input-box">
+                    <input type="text" name="state" formControlName="state" id="state">
+                </div>
+            </div>
+            <div class="col">
+                <div class="label-box">
+                    <label for="zip">ZIP Code</label>
+                </div>
+                <div class="input-box">
+                    <input type="text" name="zip" formControlName="zip" id="zip">
+                </div>
+            </div>
+        </div>
+
+        <div class="actions">
+            <button class="btn submit" type="submit">Submit</button>
+            <button class="btn clear" type="reset">Clear Form</button>
+        </div>
+    </form>
+</div>
