@@ -1,17 +1,14 @@
-import { NgClass, NgFor, NgIf, NgStyle } from '@angular/common';
-import { AfterContentInit, AfterViewInit, Component, ElementRef, Inject, OnDestroy, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
+import { NgClass, NgStyle } from '@angular/common';
+import { AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-image-card-slider',
   standalone: true,
-  imports: [NgIf, NgFor, NgStyle, NgClass],
+  imports: [NgStyle, NgClass],
   templateUrl: './image-card-slider.component.html',
   styleUrl: './image-card-slider.component.scss'
 })
-export class ImageCardSliderComponent implements OnInit, AfterViewInit, AfterContentInit, OnDestroy {
-  currentSlideIndex:number = 0;
-  noSlides:number = 0;
-
+export class ImageCardSliderComponent implements OnInit, AfterViewInit,OnDestroy {
   translateValue:number = 0;
 
   isDown = false;
@@ -19,36 +16,56 @@ export class ImageCardSliderComponent implements OnInit, AfterViewInit, AfterCon
   scrollLeft = 0;
   prevTranslateValue = 0;
 
-  screenWidth:number = 0;
   slideWidth:number = 220;
-  slideOffsetX:number = 230;
-  slideHeight:number = 350;
 
   sliderWidth:number = 0;
+  sliderContainerWidth:number = 0;
 
-  // firstSlide:SliderModel|undefined;
-  // lastSlide:SliderModel|undefined;
+  currentIndex:number = 0;
+  intervalId:any;
+  isMoveHover:boolean = false;
+  isTransitionRemoved:boolean = false;
 
   removeEvents: (() => void) | undefined;
 
+  @Input() ImageList:string[] = [
+    './../../../../assets/img/vendor-1.jpg',
+    './../../../../assets/img/vendor-2.jpg',
+    './../../../../assets/img/vendor-3.jpg',
+    './../../../../assets/img/vendor-4.jpg',
+    './../../../../assets/img/vendor-5.jpg',
+    './../../../../assets/img/vendor-6.jpg',
+    './../../../../assets/img/vendor-1.jpg',
+    './../../../../assets/img/vendor-2.jpg',
+    './../../../../assets/img/vendor-3.jpg',
+    './../../../../assets/img/vendor-4.jpg',
+    './../../../../assets/img/vendor-5.jpg',
+    './../../../../assets/img/vendor-6.jpg',
+  ];
+
+  //sliderContainer
   @ViewChild('slider') slider!:ElementRef;
+  @ViewChild('sliderContainer') sliderContainer!:ElementRef;
 
   constructor(){}
 
-  ngOnInit(): void {
-    // if(isPlatformBrowser(this.platformId)){
-      this.screenWidth = window.innerWidth; 
-    // }
-
-    // this.firstSlide = this.slides.at(0);
-    // this.lastSlide  = this.slides.at(-1);
-  }
+  ngOnInit(): void {}
 
   ngAfterViewInit(): void {
-    if(this.slider){
-      
+    if(this.slider && this.sliderContainer){
+      this.sliderContainerWidth = this.sliderContainer.nativeElement.offsetWidth;
       this.sliderWidth = this.slider.nativeElement.offsetWidth;
-      console.log('slider width', this.sliderWidth);
+
+      const noOfVisibleCards = Math.round(this.sliderContainerWidth / this.slideWidth);
+      const cards = [...this.slider.nativeElement.children];
+
+      cards.slice(-noOfVisibleCards).reverse().forEach(card => {
+        this.slider.nativeElement.insertAdjacentHTML("afterbegin", card.outerHTML);
+      });
+
+      cards.slice(0, noOfVisibleCards).reverse().forEach(card => {
+        this.slider.nativeElement.insertAdjacentHTML("beforeend", card.outerHTML);
+      });
 
       const start = (e:any) => {
         this.prevTranslateValue = this.translateValue;
@@ -93,15 +110,19 @@ export class ImageCardSliderComponent implements OnInit, AfterViewInit, AfterCon
         const delta = this.scrollLeft - dist;
         const thresold = 100;
 
+        const noCardHasPass = Math.abs(Math.floor(dist/this.slideWidth));
 
-        const noCardHasPass = Math.floor(dist/this.slideWidth);
-    
-        // this.translateValue = this.prevTranslateValue + (noCardHasPass * this.slideWidth) + 40;
+        if(this.translateValue > 0){
+          this.translateValue = - this.sliderWidth;
+          return;
+        }else if(this.translateValue + this.sliderWidth - this.sliderContainerWidth < 0){
+          this.translateValue = 0;
+        }
 
         if(delta > thresold){
-          this.nextSlide();
+          this.nextSlide(noCardHasPass);
         }else if(delta < -thresold){
-          this.prevSlide();
+          this.prevSlide(noCardHasPass);
         }else{
           this.translateValue = this.prevTranslateValue;
         }
@@ -131,42 +152,35 @@ export class ImageCardSliderComponent implements OnInit, AfterViewInit, AfterCon
         document.removeEventListener('mouseup', end);
         document.removeEventListener('touchend', end);
       });
+
+
+      this.intervalId = setInterval(() => {
+        if(!this.isMoveHover){
+          this.nextSlide(1)
+        }
+      }, 1000);
     }
   }
 
-  ngAfterContentInit(): void {
-    
+  nextSlide(no:number){
+    const nextSlideIndex = (this.currentIndex + no) % this.ImageList.length;
+    this.translateValue = - (this.slideWidth * (nextSlideIndex));
+    this.currentIndex = this.currentIndex + no;
   }
 
-  nextSlide(){
-    
-  }
-
-  prevSlide(){
-    
-  }
-
-  selectSlide(index:number){
-    // this.slideArray[this.currentSlideIndex] = false;
-    // this.slideArray[index] = true;
-    // this.currentSlideIndex = index;
-    // this.slideArray[index] = true;
-    // this.updateSlider();
-  }
-
-  updateSlider(){
-    this.translateValue = (this.currentSlideIndex + 1) * (-this.slideWidth) + this.slideOffsetX;
+  prevSlide(no:number){
+    console.log({no});
+    this.translateValue = - (this.slideWidth * ((this.currentIndex - no) % this.ImageList.length));
+    this.currentIndex = this.currentIndex - no;
   }
 
   ngOnDestroy(): void {
-    // if(isPlatformBrowser(this.platformId)){
       if(this.removeEvents){
         this.removeEvents();
       }
-    // }
-  }
-
-  resizeSlider(){
-    
+      
+      if(this.intervalId){
+        clearInterval(this.intervalId);
+      }
   }
 }
