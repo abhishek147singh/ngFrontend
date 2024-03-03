@@ -16,6 +16,7 @@ $yellow:#FFD333;
         height: 100%;
         position: relative;
         z-index: 1;
+        overflow: hidden;
     }
 
     .slide-preview-section{
@@ -83,11 +84,10 @@ $yellow:#FFD333;
         top: 0;
         left: 0;
         z-index: 2;
-        display: none;
-        animation: fade-animation 200ms linear;
 
         &.active{
-            display: block;
+            z-index: 3;
+            animation: fade-animation 0.5s ease-in-out;
         }
     }
 
@@ -118,7 +118,6 @@ $yellow:#FFD333;
         flex-direction: column;
         background-color: rgba($color: #000, $alpha: 0.3);
         color: #fff;
-
 
         h2{
             font-size: 60px;
@@ -178,9 +177,9 @@ $yellow:#FFD333;
 
 @keyframes fade-animation {
     0%{
-        opacity: 0;
+        transform: translateY(-100%);
     }
     100%{
-        opacity: 1;
+        transform: translateY(0%);
     }
 }
