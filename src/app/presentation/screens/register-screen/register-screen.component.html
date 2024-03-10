@@ -1,0 +1,59 @@
+<div class="register-container">
+    <div class="card">
+        <h1>Register</h1>
+
+        <div class="form-container">
+            
+            <div class="input-box">
+                <div class="icon">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="input">
+                    <input type="text" name="name" placeholder="Name">
+                </div>
+            </div>
+
+
+            <div class="input-box">
+                <div class="icon">
+                    <i class="fa-solid fa-envelope"></i>
+                </div>
+                <div class="input">
+                    <input type="text" name="email" placeholder="Email">
+                </div>
+            </div>
+
+            <div class="input-box">
+                <div class="icon">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <div class="input">
+                    <input type="password" name="password" placeholder="Password">
+                </div>
+            </div>
+
+            <div class="input-box">
+                <div class="icon">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <div class="input">
+                    <input type="password" name="password" placeholder="Confirm Password">
+                </div>
+            </div>
+
+            @if (errorMsg) {
+                <div class="error-message">
+                    {{errorMsg}}
+                </div>
+            }
+
+            <div class="actions">
+                <button type="submit">Register</button>
+            </div>
+        </div>
+
+        <div class="footer">
+            Already have an account? <a routerLink="/login">Login</a> 
+        </div>
+    </div>
+</div>

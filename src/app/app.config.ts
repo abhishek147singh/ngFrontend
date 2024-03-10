@@ -9,7 +9,8 @@ import { provideRouterStore } from '@ngrx/router-store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { appEffects, appReducer } from './store';
 import { CustomSerializer } from './store/router/custom-serializer';
+import { provideHttpClient } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideAnimations(), provideStore(appReducer), provideEffects(appEffects), provideRouterStore({ serializer:  CustomSerializer}), provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() })]
+  providers: [provideRouter(routes), provideHttpClient() , provideAnimations(), provideStore(appReducer), provideEffects(appEffects), provideRouterStore({ serializer:  CustomSerializer}), provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() })]
 };

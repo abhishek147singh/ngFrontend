@@ -1,0 +1,43 @@
+<div class="login-container">
+    <div class="card">
+        <h1>Login</h1>
+
+        <div class="form-container">
+            <form [formGroup]="loginForm">
+
+            <div class="input-box">
+                <div class="icon">
+                    <i class="fa-solid fa-envelope"></i>
+                </div>
+                <div class="input">
+                    <input type="text" name="email" formControlName="email" placeholder="Email">
+                </div>
+            </div>
+
+            <div class="input-box">
+                <div class="icon">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <div class="input">
+                    <input type="password" name="password" formControlName="password" placeholder="Password">
+                </div>
+            </div>
+
+            @if (errorMsg) {
+                <div class="error-message">
+                    {{errorMsg}}
+                </div>
+            }
+
+            <div class="actions">
+                <button type="submit">Login</button>
+            </div>
+        </form>
+            
+        </div>
+
+        <div class="footer">
+            Don't have any account? <a routerLink="/register">Register</a> 
+        </div>
+    </div>
+</div>
