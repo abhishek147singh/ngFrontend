@@ -11,7 +11,7 @@ header{
         height: 60px;
         padding-inline: 3rem;
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 350px 1fr;
         border: 1px solid #ced4da;
     }
 
@@ -23,6 +23,36 @@ header{
         grid-template-columns: 250px 1fr 100px;
         background-color: #3d464d;
         color: #fff;
+    }
+
+    .header-2{
+        width: 100%;
+        height: 70px;
+        padding-inline: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        display: none;
+        background-color: $dark-font-color;
+        position: relative;
+
+        .logo-container{
+            color: #fff;
+        }
+
+        .bars{
+            button{
+                padding: 4px 10px;
+                font-size: 24px;
+                color: $light-font-color;
+                background-color: $dark-font-color;
+                border: 1px solid $light-font-color;
+            }
+        }
+
+        .drop-down{
+           position: absolute;       
+        }
     }
 }
 
@@ -108,35 +138,35 @@ header{
         display: inline-block;
         margin-right: 10px;
     }
+}
 
-    .drop-down{
-        width: 100%;
-        position: absolute;
-        left: 0;
-        top: 100%;
-        background-color: #fff;
-        box-shadow: 0 0 1px 1px rgba($color: #000000, $alpha: 0.2);
-        overflow: hidden;
-        z-index: 10;
-        ul{
-            list-style: none;
-            li{
-                a{
-                    width: 100%;
-                    display: inline-block;
-                    padding: 10px 20px;
-                    text-decoration: none;
-                    color: $light-font-color;
-                }
+.drop-down{
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    background-color: #fff;
+    box-shadow: 0 0 1px 1px rgba($color: #000000, $alpha: 0.2);
+    overflow: hidden;
+    z-index: 10;
+    ul{
+        list-style: none;
+        li{
+            a{
+                width: 100%;
+                display: inline-block;
+                padding: 10px 20px;
+                text-decoration: none;
+                color: $light-font-color;
+            }
 
-                a:hover{
-                    color: $dark-font-color;
-                    background-color: #ced4da;
-                }
+            a:hover{
+                color: $dark-font-color;
+                background-color: #ced4da;
             }
         }
-
     }
+
 }
 
 .category-container:hover{
@@ -191,4 +221,35 @@ header{
 }
 
 
+@media screen and (max-width:1024px) {
+    header{
+        width: 100%;
 
+        .upper-header{
+            padding-inline: 20px;
+        }
+
+        .lower-header{
+            padding-inline: 20px;
+            grid-template-columns: 200px 1fr 100px;
+        }
+    }
+}
+
+@media screen and (max-width:768px) {
+    header{
+        .upper-header{
+            display: none;
+        }
+
+        .lower-header{
+            display: none;
+        }
+
+        .header-2{
+            display: flex;
+            border: 1px solid #ccc;
+        }
+    }
+    
+}

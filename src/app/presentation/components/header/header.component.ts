@@ -28,5 +28,6 @@ import { Component } from '@angular/core';
 
 export class HeaderComponent {
   isCategoryDropDownActive:boolean = false;
+  isHeader2Opened:boolean = false;
 
 }
