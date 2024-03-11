@@ -49,10 +49,18 @@
         <div class="logo-container">
             <h1>LOGO</h1>
         </div>
-        <div class="bars">
-            <button (click)="isHeader2Opened = !isHeader2Opened">
-                <i class="fa-solid fa-bars"></i>
-            </button>
+        <div class="freatures-container">
+            <div class="search">
+                <button class="search-btn">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </div>
+            <div class="cart-container"><i class="fa-solid fa-cart-shopping"></i> <span class="cart-no">0</span></div>
+            <div class="bars">
+                <button (click)="isHeader2Opened = !isHeader2Opened">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
         </div>
 
         <div class="drop-down" [@expandPanel]="isHeader2Opened ? 'expanded' : 'collapsed'">

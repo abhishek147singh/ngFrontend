@@ -4,7 +4,7 @@ $yellow:#FFD333;
 
 .category-card{
     width: 100%;
-    max-width: 300px;
+    min-width: 300px;
     height: 100px;
     display: grid;
     grid-template-columns: 100px 1fr;
