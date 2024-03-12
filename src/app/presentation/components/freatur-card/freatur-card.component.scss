@@ -45,44 +45,63 @@ $yellow:#FFD333;
 
 @media screen and (max-width:1200px) {
     
-.featured-card{
-    width: 100%;
-    min-width: 300px;
-    margin-inline: auto;
-    height: 100px;
-    display: grid;
-    grid-template-columns: 100px 1fr;
-    background-color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s linear;
-
-
-    .image-container{
+    .featured-card{
         width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        min-width: 300px;
+        margin-inline: auto;
+        height: 100px;
+        display: grid;
+        grid-template-columns: 100px 1fr;
+        background-color: #fff;
+        cursor: pointer;
+        transition: background-color 0.3s linear;
 
-        h1{
-            font-size: 50px;
-            color: $yellow;
-            font-weight: 900;
+
+        .image-container{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            h1{
+                font-size: 50px;
+                color: $yellow;
+                font-weight: 900;
+            }
+        }   
+
+        .text-details{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding-left: 10px;
+            padding-right: 15px;
+            color: $dark-font-color;
+            font-size: 20px;
+            font-weight: 600;
         }
-    }   
-
-    .text-details{
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-        padding-left: 10px;
-        padding-right: 15px;
-        color: $dark-font-color;
-        font-size: 20px;
-        font-weight: 600;
     }
 }
+
+@media screen and (max-width:650px) {
+    .featured-card{
+        min-width: 100px;
+        height: 50px;
+        grid-template-columns: 42px 1fr;
+
+        .image-container{
+            h1{
+                font-size: 30px;
+            }
+        }
+
+        .text-details{
+            font-size: 12px;
+        }
+    }
 }
+

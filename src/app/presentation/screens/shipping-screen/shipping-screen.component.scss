@@ -119,6 +119,14 @@ $yellow:#FFD333;
             text-align: right;
         }
     }
-
-
 }
+
+@media screen and (max-width:1250px) {
+    .section-container{
+        display: block;
+    }
+}
+
+// @media screen and (max-width:750px) {
+
+// }

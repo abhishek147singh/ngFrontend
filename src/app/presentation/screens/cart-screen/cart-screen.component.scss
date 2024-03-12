@@ -7,7 +7,7 @@ $yellow:#FFD333;
     margin-top: 20px;
     padding-bottom: 20px;
     display: grid;
-    grid-template-columns: 1fr 450px;
+    grid-template-columns: 800px 1fr;
 
     .product-list{
         width: 100%;
@@ -191,4 +191,75 @@ table{
     display: flex;
     justify-content: center;
     align-self: center;
+}
+
+@media screen and (max-width:1200px) {
+    .cart-container{
+        grid-template-columns: 1fr;
+
+        .product-list{
+            padding-right: 0;
+            margin-bottom: 40px;
+        }  
+    
+        .actions-cards{
+            width: 100%;
+        } 
+    }
+
+    table tbody td .table-image{
+        flex-direction: column;
+    }
+
+    
+    table{
+        thead{
+            th{
+                padding: 5px 5px;
+                font-size: 14px;
+                font-weight: 400;
+
+                &:nth-child(4){
+                    display: none;
+                }
+            }
+        }
+
+        tbody{
+
+            td{
+                border: 0;
+                padding: 5px 0;
+                height: 100%;
+                text-align: center;
+                font-size: 14px;
+                font-weight: 400;
+
+                &:nth-child(4){
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width:500px) {
+    
+    table{
+        thead{
+            th{
+                &:nth-child(4){
+                    display: none;
+                }
+            }
+        }
+
+        tbody{
+            td{
+                &:nth-child(4){
+                    display: none;
+                }
+            }
+        }
+    }
 }

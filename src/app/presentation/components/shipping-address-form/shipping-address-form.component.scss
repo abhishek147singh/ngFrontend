@@ -64,3 +64,13 @@ $yellow:#FFD333;
         }
     }
 }
+
+@media screen and (max-width:750px) {
+    .row{
+        flex-direction: column;
+
+        .col{
+            width: 100%;
+        }
+    }
+}

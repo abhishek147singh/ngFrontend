@@ -52,3 +52,22 @@ $yellow:#FFD333;
         }
     }
 }
+
+
+@media screen and (max-width:1200px) {
+    .container{
+        grid-template-columns: 1fr 350px;
+    }
+}
+
+@media screen and (max-width:850px) {
+    .container{
+        display: block;
+
+        .address-card{
+            width: 100%;
+            margin-left: 0;
+            margin-top: 20px;
+        }
+    }
+}
