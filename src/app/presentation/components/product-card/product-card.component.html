@@ -1,10 +1,10 @@
 <div class="card">
     <div class="image-container">
-        <img src="../../../../assets/img/product-1.jpg" alt="product-image">
+        <img [src]="productDetails.image" alt="product-image">
         <div class="hover-box">
             <div class="action-list">
                 <!-- add to cart -->
-                <button>
+                <button (click)="onAddToCart()">
                     <i class="fa-solid fa-cart-shopping"></i>
                 </button>
                 <!-- like -->
@@ -23,13 +23,13 @@
         </div>
     </div>
     <div class="text-details-container">
-        <h4 class="title">Product Name Goes Here</h4>
+        <h4 class="title" [routerLink]="['product', productDetails.id]">{{productDetails.name}}</h4>
         <div class="price">
-            <div class="right">$20000</div>
-            <div class="wrong">$30000</div>
+            <div class="right">${{productDetails.actualPrice}}</div>
+            <div class="wrong">${{productDetails.crossPrice}}</div>
         </div>
         <div class="rating">
-            <app-product-rating [rating]="4.5"></app-product-rating>
+            <app-product-rating [rating]="productDetails.rating"></app-product-rating>
         </div>
     </div>
 </div>

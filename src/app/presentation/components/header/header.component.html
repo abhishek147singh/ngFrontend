@@ -1,7 +1,7 @@
 <header>
     <div class="upper-header">
         <div class="logo-container">
-            <h1>LOGO</h1>
+            <h1 routerLink="/">LOGO</h1>
         </div>
         <div class="search-container">
             <div class="search-box">
@@ -41,13 +41,13 @@
             </ul>
         </div>
         <div class="freatures-container">
-            <div class="cart-container"><i class="fa-solid fa-cart-shopping"></i> <span class="cart-no">0</span></div>
+            <div class="cart-container" routerLink="cart"><i class="fa-solid fa-cart-shopping"></i> <span class="cart-no">{{totalCartProducts}}</span></div>
         </div>
     </div>
 
     <div class="header-2">
         <div class="logo-container">
-            <h1>LOGO</h1>
+            <h1 routerLink="/">LOGO</h1>
         </div>
         <div class="freatures-container">
             <div class="search">
@@ -55,7 +55,7 @@
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
             </div>
-            <div class="cart-container"><i class="fa-solid fa-cart-shopping"></i> <span class="cart-no">0</span></div>
+            <div class="cart-container" routerLink="cart"><i class="fa-solid fa-cart-shopping"></i> <span class="cart-no">{{totalCartProducts}}</span></div>
             <div class="bars">
                 <button (click)="isHeader2Opened = !isHeader2Opened">
                     <i class="fa-solid fa-bars"></i>

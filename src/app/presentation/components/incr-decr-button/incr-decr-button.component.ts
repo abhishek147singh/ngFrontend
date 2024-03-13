@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-incr-decr-button',
@@ -9,5 +9,16 @@ import { Component } from '@angular/core';
 })
 
 export class IncrDecrButtonComponent {
+  @Input() count:number = 0;
+  @Output() incrementEmt = new EventEmitter<void> ();
+  @Output() decrementEmt = new EventEmitter<void> ();
+
+  onIncrement(){
+    this.incrementEmt.emit();
+  }
+
+  onDecrement(){
+    this.decrementEmt.emit();
+  }
 
 }

@@ -1,10 +1,15 @@
 import { trigger, state, style, transition, animate } from '@angular/animations';
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../store/store.state';
+import { getTotalNoProducts } from '../../../store/cart/cart.selector';
+import { Subscription } from 'rxjs';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
   animations:[
@@ -26,8 +31,22 @@ import { Component } from '@angular/core';
   ],
 })
 
-export class HeaderComponent {
+export class HeaderComponent implements OnInit, OnDestroy{
   isCategoryDropDownActive:boolean = false;
   isHeader2Opened:boolean = false;
 
+  totalCartProducts:number = 0;
+  cartProductSubscription:Subscription|undefined;
+
+  constructor(private store:Store<AppState>){}
+
+  ngOnInit(): void {
+    this.cartProductSubscription = this.store.select(getTotalNoProducts).subscribe(total => {
+      this.totalCartProducts = total;
+    })
+  }
+
+  ngOnDestroy(): void {
+    this.cartProductSubscription?.unsubscribe();
+  }
 }

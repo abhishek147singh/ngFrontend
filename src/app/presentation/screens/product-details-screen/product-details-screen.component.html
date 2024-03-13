@@ -1,21 +1,24 @@
 <app-breadcrumb [urlArrays]="[{title:'home', url:'/'}]" [activeUrlTitle]="'Product Name'"></app-breadcrumb>
 <div class="product-details-container">
     <div class="product-image-container">
-        <img src="./../../../../assets/img/product-1.jpg" alt="" srcset="">
+        <img [src]="productDetails.image" alt="Product Image">
     </div>
     <div class="product-text-details-container">
-        <h1>Product Name</h1>
+        <h1>{{productDetails.name}}</h1>
         <div class="rating-container">
-            <app-product-rating [rating]="4.5" [noReviews]="11" [xPostion]="'flex-start'" [reviewWithText]="true"></app-product-rating>
+            <app-product-rating [rating]="productDetails.rating" [noReviews]="productDetails.reviews" [xPostion]="'flex-start'" [reviewWithText]="true"></app-product-rating>
         </div>
 
-        <h2>$ 100.00</h2>
+        <h2>$ {{productDetails.price}}</h2>
 
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem ducimus aliquam asperiores quibusdam labore reprehenderit, ut veniam recusandae repudiandae sapiente.</p>
+        <p>{{productDetails.discription}}</p>
 
         <div class="actions">
-            <app-incr-decr-button></app-incr-decr-button>
-            <div class="add-to-cart-btn">
+            @if (isProductAddedInCart) {
+                <app-incr-decr-button (decrementEmt)="onDecrement(productDetails.id)" (incrementEmt)="onIncrement(productDetails.id)" [count]="productCartCount"></app-incr-decr-button>
+            }
+            
+            <div class="add-to-cart-btn" (click)="addToCart()">
                 <div class="icon">
                     <i class="fa-solid fa-cart-shopping"></i>
                 </div>
