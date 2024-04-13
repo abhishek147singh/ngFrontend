@@ -1,6 +1,6 @@
 <div class="card">
     <div class="image-container">
-        <img [src]="productDetails.image" alt="product-image">
+        <img [src]="assetsPath + '/' + productDetails.img" alt="product-image">
         <div class="hover-box">
             <div class="action-list">
                 <!-- add to cart -->
@@ -25,11 +25,11 @@
     <div class="text-details-container">
         <h4 class="title" [routerLink]="['product', productDetails.id]">{{productDetails.name}}</h4>
         <div class="price">
-            <div class="right">${{productDetails.actualPrice}}</div>
-            <div class="wrong">${{productDetails.crossPrice}}</div>
+            <div class="right">${{productDetails.price}}</div>
+            <div class="wrong">${{getActualPrice(productDetails.price, productDetails.discount)}}</div>
         </div>
         <div class="rating">
-            <app-product-rating [rating]="productDetails.rating"></app-product-rating>
+            <app-product-rating [rating]="productDetails.rating" [noReviews]="productDetails.noReviews"></app-product-rating>
         </div>
     </div>
 </div>

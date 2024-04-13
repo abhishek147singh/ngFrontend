@@ -19,7 +19,7 @@ export class AuthRepository extends IAuthRepository{
     }
 
     override login(Email: string, Password: string): Observable<authModel> {
-        const url = `${baseUrl}/api/Authentication/Login`;
+        const url = `${baseUrl}/api/user/signin`;
 
        return this.http.post<AuthEntity> (url, { Email, Password }).pipe(
             map((response) => {
@@ -33,9 +33,9 @@ export class AuthRepository extends IAuthRepository{
     }
     
     override register(Name: string, Email: string, Password: string): Observable<authModel> {
-        const url = `${baseUrl}/api/Authentication/Register`;
+        const url = `${baseUrl}/api/user/signup`;
 
-        return this.http.post<AuthEntity> (url, { Email, Password }).pipe(
+        return this.http.post<AuthEntity> (url, { Name, Email, Password }).pipe(
             map((response) => {
                 if (response.status) {
                     return response.data;

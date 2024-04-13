@@ -3,7 +3,7 @@
         <h1>Login</h1>
 
         <div class="form-container">
-            <form [formGroup]="loginForm">
+            <form [formGroup]="loginForm" (ngSubmit)="OnSubmit()">
 
             <div class="input-box">
                 <div class="icon">

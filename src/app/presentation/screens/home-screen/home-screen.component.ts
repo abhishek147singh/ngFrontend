@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ProductCardComponent } from '../../components/product-card/product-card.component';
 import { SliderComponent } from '../../components/slider/slider.component';
 import { SectionComponent } from '../../components/section/section.component';
@@ -9,6 +9,10 @@ import { ToasterService } from '../../../service/toaster.service';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../store/store.state';
 import { addToCart } from '../../../store/cart/cart.action';
+import { ProductListItemModel } from '../../../core/domain/product/product-list-item.model';
+import { Subscription } from 'rxjs';
+import { ProductService } from '../../../service/product.service';
+import { CategoryListItemModel } from '../../../core/domain/product/category-list-item.model';
 
 @Component({
   selector: 'app-home-screen',
@@ -18,8 +22,38 @@ import { addToCart } from '../../../store/cart/cart.action';
   styleUrl: './home-screen.component.scss'
 })
 
-export class HomeScreenComponent {
-  constructor(private toasterService:ToasterService, private store:Store<AppState>){}
+export class HomeScreenComponent implements OnInit, OnDestroy{
+  productList:ProductListItemModel[] = [];
+  categoryList:CategoryListItemModel[] = [];
+  categoryListSubscription:Subscription|undefined;
+  productListSubscription:Subscription|undefined;
+
+  constructor(
+    private toasterService:ToasterService, 
+    private store:Store<AppState>,
+    private productService:ProductService
+  ){}
+
+  ngOnInit(): void {
+    this.productListSubscription = this.productService.getProductList().subscribe({
+      next:(response => {
+        this.productList = response;
+      }),
+      error:(error => {})
+    });
+
+    this.categoryListSubscription = this.productService.getCategoryList().subscribe({
+      next:(categoryList => {
+        this.categoryList = categoryList;
+      })
+    })
+  }
+
+  ngOnDestroy(): void {
+    this.productListSubscription?.unsubscribe();
+    this.categoryListSubscription?.unsubscribe();
+  }
+
 
   addToCart(productDetails:{ productId:string; Image:string; Name:string; price:number; count:number;}){
     this.store.dispatch(addToCart(productDetails));

@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AuthService } from '../../../service/auth.service';
 import { RouterLink } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../store/store.state';
+import { login } from '../../../store/auth/auth.action';
 
 @Component({
   selector: 'app-login-screen',
@@ -20,7 +22,7 @@ export class LoginScreenComponent {
     password: new FormControl('', [Validators.required]),
   });
 
-  constructor(private authService:AuthService){}
+  constructor(private store:Store<AppState>){}
 
   OnSubmit(){
     if(this.loginForm.invalid) return;
@@ -28,21 +30,7 @@ export class LoginScreenComponent {
     const Email = this.loginForm.get('email')?.value;
     const Password = this.loginForm.get('password')?.value;
 
-    if(Email && Password){
-      this.authService.login(Email, Password).subscribe({
-        next:(response => {
-
-        }),
-        error:(error => {
-          this.errorMsg = error.message;
-        })
-      })
-    }
-
-
-
-    // this.authService.login(Email, Password);
-
+    this.store.dispatch(login({username: Email, pass:Password, redirectionUrl: '/'}));
   }
 
 }

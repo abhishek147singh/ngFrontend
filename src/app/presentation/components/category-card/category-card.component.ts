@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { assetsPath } from '../../../../environment';
 
 @Component({
   selector: 'app-category-card',
@@ -8,5 +9,9 @@ import { Component } from '@angular/core';
   styleUrl: './category-card.component.scss'
 })
 export class CategoryCardComponent {
+  @Input() name = '';
+  @Input() image = '';
+  @Input() noProducts = 0;
 
+  assestPath = assetsPath;
 }

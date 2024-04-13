@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ProductRatingComponent } from '../product-rating/product-rating.component';
 import { RouterLink } from '@angular/router';
+import { ProductListItemModel } from '../../../core/domain/product/product-list-item.model';
+import { assetsPath } from '../../../../environment';
 
 @Component({
   selector: 'app-product-card',
@@ -11,10 +13,27 @@ import { RouterLink } from '@angular/router';
 })
 
 export class ProductCardComponent {
-  @Input() productDetails = {name:'Product Name Goes Here', actualPrice:2000, crossPrice:3000, rating:4.5, id:'1', image:'../../../../assets/img/product-1.jpg'};
+
+  assetsPath = assetsPath;
+
+  @Input() productDetails:ProductListItemModel = {
+    id:'',
+    name:'',
+    price:0,
+    rating:0,
+    reviews:0,
+    discount:0,
+    img:'',
+    noReviews:0
+  };
+
   @Output() addToCartEmt = new EventEmitter<{ productId:string; Image:string; Name:string; price:number; count:number;}> ();
 
   onAddToCart(){
-    this.addToCartEmt.emit({productId:this.productDetails.name, Image:this.productDetails.image, Name:this.productDetails.name, price:this.productDetails.actualPrice, count:1});
+    this.addToCartEmt.emit({productId:this.productDetails.name, Image:this.productDetails.img, Name:this.productDetails.name, price:this.getActualPrice(this.productDetails.price, this.productDetails.discount) , count:1});
+  }
+
+  getActualPrice(price:number, discount:number){
+    return (price - (price* (discount/100)));
   }
 }

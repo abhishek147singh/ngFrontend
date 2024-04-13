@@ -9,28 +9,25 @@
 
 <app-section title="Categories">
     <div class="list">
-        <app-category-card></app-category-card>
-        <app-category-card></app-category-card>
-        <app-category-card></app-category-card>
-        <app-category-card></app-category-card>
+        @for (category of categoryList; track category._id) {
+            <app-category-card [image]="category.name" [name]="category.name" [noProducts]="category.noProducts"></app-category-card>
+        }
     </div>
 </app-section>
 
 <app-section title="Featured products">
     <div class="list">
-        <app-product-card (addToCartEmt)="addToCart($event)"></app-product-card>
-        <app-product-card (addToCartEmt)="addToCart($event)"></app-product-card>
-        <app-product-card (addToCartEmt)="addToCart($event)"></app-product-card>
-        <app-product-card (addToCartEmt)="addToCart($event)"></app-product-card>
+        @for (product of productList; track product.id) {
+            <app-product-card [productDetails]="product" (addToCartEmt)="addToCart($event)"></app-product-card>
+        }
     </div>
 </app-section>
 
 <app-section title="Recent products">
     <div class="list">
-        <app-product-card (addToCartEmt)="addToCart($event)"></app-product-card>
-        <app-product-card (addToCartEmt)="addToCart($event)"></app-product-card>
-        <app-product-card (addToCartEmt)="addToCart($event)"></app-product-card>
-        <app-product-card (addToCartEmt)="addToCart($event)"></app-product-card>
+        @for (product of productList; track product.id) {
+            <app-product-card [productDetails]="product" (addToCartEmt)="addToCart($event)"></app-product-card>
+        }
     </div>
 </app-section>
 
