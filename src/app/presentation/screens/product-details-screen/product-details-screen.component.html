@@ -1,21 +1,21 @@
-<app-breadcrumb [urlArrays]="[{title:'home', url:'/'}]" [activeUrlTitle]="'Product Name'"></app-breadcrumb>
+<app-breadcrumb [urlArrays]="[{title:'home', url:'/'}]" [activeUrlTitle]="productDetails.name"></app-breadcrumb>
 <div class="product-details-container">
     <div class="product-image-container">
-        <img [src]="productDetails.image" alt="Product Image">
+        <img [src]="assetsPath + '/' + productDetails.img" alt="Product Image">
     </div>
     <div class="product-text-details-container">
         <h1>{{productDetails.name}}</h1>
         <div class="rating-container">
-            <app-product-rating [rating]="productDetails.rating" [noReviews]="productDetails.reviews" [xPostion]="'flex-start'" [reviewWithText]="true"></app-product-rating>
+            <app-product-rating [rating]="productDetails.rating" [noReviews]="productDetails.noReviews" [xPostion]="'flex-start'" [reviewWithText]="true"></app-product-rating>
         </div>
 
         <h2>$ {{productDetails.price}}</h2>
 
-        <p>{{productDetails.discription}}</p>
+        <div class="description" [innerHTML]="productDetails.description" ></div>
 
         <div class="actions">
             @if (isProductAddedInCart) {
-                <app-incr-decr-button (decrementEmt)="onDecrement(productDetails.id)" (incrementEmt)="onIncrement(productDetails.id)" [count]="productCartCount"></app-incr-decr-button>
+                <app-incr-decr-button style="margin-right: 20px;" (decrementEmt)="onDecrement(productDetails._id)" (incrementEmt)="onIncrement(productDetails._id)" [count]="productCartCount"></app-incr-decr-button>
             }
             
             <div class="add-to-cart-btn" (click)="addToCart()">
@@ -61,17 +61,26 @@
             <app-tab-content title="Reviews">
                 <div class="review-rating-container">
                     <div class="review-list-container">
-                        <h2>1 review for "Product Name"</h2>
+                        <h2>Reviews for "{{productDetails.name}}"</h2>
                         <div class="review-list">
-                            <app-review-card></app-review-card>
+                            @for (review of reviewList | async; track review._id) {
+                                <app-review-card [reviewModel]="review"></app-review-card>
+                            }@empty {
+                                No Review Available
+                            }
                         </div>
                     </div>
                     <div class="review-form">
                         <h2>Leave a review</h2>
-                        <p class="info">Your email address will not be published. Required fields are marked *</p>
-                        <div class="form-container">
-                            <app-review-form></app-review-form>
-                        </div>
+                        @if (isUserLogin) {
+                            <p class="info">Your email address will not be published. Required fields are marked *</p>
+                            <div class="form-container">
+                                <app-review-form [productId]="productDetails._id"></app-review-form>
+                            </div>
+                        }@else {
+                            <p style="text-align: center;margin-top: 20px;">Please Login First!</p>
+                            <a class="login-btn" [routerLink]="['/', 'login']"> Login </a>
+                        }
                     </div>
                 </div>
             </app-tab-content>
@@ -81,9 +90,8 @@
 
 <app-section title="YOU MAY ALSO LIKE">
     <div class="list">
-        <app-product-card></app-product-card>
-        <app-product-card></app-product-card>
-        <app-product-card></app-product-card>
-        <app-product-card></app-product-card>
+        @for (product of similarProductList | async; track product._id) {
+            <app-product-card [productDetails]="product"></app-product-card>
+        }
     </div>
 </app-section>

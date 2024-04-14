@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-rating-input',
@@ -9,8 +9,10 @@ import { Component } from '@angular/core';
 })
 export class RatingInputComponent {
   rating:number = 0;
+  @Output() onChangeEmt = new EventEmitter<number> ();
 
   setRating(rating:number){
     this.rating = rating;
+    this.onChangeEmt.emit(rating);
   }
 }

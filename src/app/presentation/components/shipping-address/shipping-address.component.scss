@@ -21,7 +21,8 @@ $yellow:#FFD333;
 
     .col{
         width: calc(50% - 15px);
-
+        display: grid;
+        grid-template-columns: 150px 1fr;
         .label-box{
             font-size: 18px;
             color: $light-font-color;
@@ -30,14 +31,7 @@ $yellow:#FFD333;
 
         .input-box{
             width: 100%;
-            
-            input{
-                width: 100%;
-                padding: 5px 10px;
-                font-size: 16px;
-                border: 1px solid #ccc;
-                outline: none;
-            }
+            text-align: end;
         }
 
     }
@@ -66,12 +60,15 @@ $yellow:#FFD333;
 }
 
 @media screen and (max-width:750px) {
+    .shipping-form-container{
+        padding: 10px 0 10px 0;
+    }
+    
     .row{
         flex-direction: column;
 
         .col{
             width: 100%;
-
             &:first-child{
                 margin-bottom: 15px;
             }

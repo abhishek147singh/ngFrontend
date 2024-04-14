@@ -11,7 +11,18 @@ export interface cartModelState{
     totalItems:number;
 }
 
-export const initialState:cartModelState = {
-    items:[],
-    totalItems:0
-};
+const getInitialState = ():cartModelState => {
+    if(typeof localStorage !== undefined){
+        const cartState = localStorage.getItem('cart');
+        if(cartState){
+            return JSON.parse(cartState);
+        }
+    }
+
+    return {
+        items:[],
+        totalItems:0
+    };
+}
+
+export const initialState:cartModelState = getInitialState();

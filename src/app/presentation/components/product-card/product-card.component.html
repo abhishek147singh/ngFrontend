@@ -23,7 +23,7 @@
         </div>
     </div>
     <div class="text-details-container">
-        <h4 class="title" [routerLink]="['product', productDetails.id]">{{productDetails.name}}</h4>
+        <h4 class="title" [routerLink]="['/','product', productDetails._id]">{{productDetails.name}}</h4>
         <div class="price">
             <div class="right">${{productDetails.price}}</div>
             <div class="wrong">${{getActualPrice(productDetails.price, productDetails.discount)}}</div>

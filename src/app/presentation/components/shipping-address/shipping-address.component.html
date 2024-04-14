@@ -1,0 +1,99 @@
+@if (shippingState) {
+    <div class="shipping-form-container">
+        <!-- <h1>Shipping Address</h1> -->
+            <div class="row">
+                <div class="col">
+                    <div class="label-box">
+                        <label for="fName">First Name</label>
+                    </div>
+                    <div class="input-box">
+                        {{shippingState.fName}}
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="label-box">
+                        <label for="lName">Last Name</label>
+                    </div>
+                    <div class="input-box">
+                        {{shippingState.lName}}
+                    </div>
+                </div>
+            </div>
+    
+            <div class="row">
+                <div class="col">
+                    <div class="label-box">
+                        <label for="email">Email</label>
+                    </div>
+                    <div class="input-box">
+                        {{shippingState.email}}
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="label-box">
+                        <label for="mobile">Mobile Number</label>
+                    </div>
+                    <div class="input-box">
+                        {{shippingState.mobile}}
+                    </div>
+                </div>
+            </div>
+    
+            <div class="row">
+                <div class="col">
+                    <div class="label-box">
+                        <label for="address1">Address Line 1</label>
+                    </div>
+                    <div class="input-box">
+                        {{shippingState.address1}}
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="label-box">
+                        <label for="address2">Address Line 2</label>
+                    </div>
+                    <div class="input-box">
+                        {{shippingState.address2}}
+                    </div>
+                </div>
+            </div>
+    
+            <div class="row">
+                <div class="col">
+                    <div class="label-box">
+                        <label for="city">City</label>
+                    </div>
+                    <div class="input-box">
+                        {{shippingState.city}}
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="label-box">
+                        <label for="country">Country</label>
+                    </div>
+                    <div class="input-box">
+                        {{shippingState.country}}
+                    </div>
+                </div>
+            </div>
+    
+            <div class="row">
+                <div class="col">
+                    <div class="label-box">
+                        <label for="state">State</label>
+                    </div>
+                    <div class="input-box">
+                        {{shippingState.state}}
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="label-box">
+                        <label for="zip">ZIP Code</label>
+                    </div>
+                    <div class="input-box">
+                        {{shippingState.zip}}
+                    </div>
+                </div>
+            </div>
+    </div>
+}

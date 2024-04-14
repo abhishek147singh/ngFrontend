@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../store/store.state';
 import { login } from '../../../store/auth/auth.action';
@@ -13,7 +13,7 @@ import { login } from '../../../store/auth/auth.action';
   styleUrl: './login-screen.component.scss'
 })
 
-export class LoginScreenComponent {
+export class LoginScreenComponent implements OnInit{
 
   errorMsg:string = '';
 
@@ -22,7 +22,16 @@ export class LoginScreenComponent {
     password: new FormControl('', [Validators.required]),
   });
 
-  constructor(private store:Store<AppState>){}
+  redirectTo:string = '/';
+
+  constructor(private store:Store<AppState>, private route: ActivatedRoute){}
+
+  ngOnInit(): void {
+    const redirectionUrl = this.route.snapshot.queryParams['redirectTo'];
+    if(redirectionUrl){
+      this.redirectTo = redirectionUrl;
+    }
+  }
 
   OnSubmit(){
     if(this.loginForm.invalid) return;
@@ -30,7 +39,7 @@ export class LoginScreenComponent {
     const Email = this.loginForm.get('email')?.value;
     const Password = this.loginForm.get('password')?.value;
 
-    this.store.dispatch(login({username: Email, pass:Password, redirectionUrl: '/'}));
+    this.store.dispatch(login({username: Email, pass:Password, redirectionUrl: this.redirectTo}));
   }
 
 }

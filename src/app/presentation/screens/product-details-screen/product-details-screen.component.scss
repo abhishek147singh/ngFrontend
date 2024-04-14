@@ -36,9 +36,15 @@ $yellow:#FFD333;
         p{
             color: $light-font-color;
             font-size: 18px;
-            font-weight: 500;
             margin: 20px 0;
         }
+
+        .description{
+            color: $light-font-color;
+            font-size: 18px;
+            margin: 20px 0;
+        }
+
 
         .rating-container{
             margin: 10px 0;
@@ -95,7 +101,7 @@ $yellow:#FFD333;
 }
 
 .add-to-cart-btn{
-    margin-left: 20px;
+    margin-left:0;
     height: 40px;
     display: grid;
     grid-template-columns: 40px 1fr;
@@ -132,7 +138,6 @@ $yellow:#FFD333;
 
     p{
         font-size: 18px;
-        font-weight: 500;
         color: $light-font-color;
     }
 }
@@ -186,6 +191,23 @@ $yellow:#FFD333;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 20px;
     padding: 10px 0;
+}
+
+
+.login-btn{
+    margin: 10px 0;
+    padding: 8px 12px;
+    color: $dark-font-color;
+    background-color: $yellow;
+    border: 1px solid #ccc;
+    outline: none;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-inline: auto;
+    text-decoration: none;
+    width: 65px;
+    display: block;
 }
 
 @media screen and (max-width: 1200px) {

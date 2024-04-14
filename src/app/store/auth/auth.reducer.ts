@@ -12,6 +12,7 @@ const _authReducer = createReducer(
     
     on(loginSuccess, (state , action) => {
         const newState = {...state, loading: false , ...action.data};
+        localStorage.setItem('auth', JSON.stringify(newState));
         return newState;
     }),
     

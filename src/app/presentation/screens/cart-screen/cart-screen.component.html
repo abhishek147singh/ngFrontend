@@ -17,7 +17,7 @@
                     <tr>
                         <td>
                             <div class="table-image">
-                                <img [src]="product.Image" alt="product image"> {{product.Name}}
+                                <img [src]="assetsPath + '/' + product.Image" alt="product image"> {{product.Name}}
                             </div>
                         </td>
                         <td>${{product.price}}</td>
@@ -28,7 +28,7 @@
                         </td>
                         <td>${{product.price * product.count}}</td>
                         <td>
-                            <button class="cancel-btn"><i class="fa-solid fa-xmark"></i></button>
+                            <button class="cancel-btn" (click)="onRemove(product.productId)"><i class="fa-solid fa-xmark"></i></button>
                         </td>
                     </tr>
                 }
@@ -48,23 +48,21 @@
         <div class="cart-summary-card">
             <h3>CART SUMMARY</h3>
             <div class="card">
-                <div class="row">
-                    <div class="title">Subtotal</div>
-                    <div class="value">$150</div>
-                </div>
-                <div class="row">
-                    <div class="title">Shipping</div>
-                    <div class="value">$10</div>
-                </div>
+                @for (product of cartProducts; track product.productId) {
+                    <div class="row">
+                        <div class="title">Subtotal</div>
+                        <div class="value">$ {{getProductPrice(product.price, product.count)}}</div>
+                    </div>
+                }
 
                 <div class="divider"></div>
 
                 <div class="row main">
                     <div class="title">Total</div>
-                    <div class="value">$160</div>
+                    <div class="value">$ {{getProductTotal(cartProducts)}}</div>
                 </div>
 
-                <button class="procced-btn">Procced To Checkout</button>
+                <button class="procced-btn" (click)="proccedToCheckout()">Procced To Checkout</button>
             </div>
         </div>
     </div>

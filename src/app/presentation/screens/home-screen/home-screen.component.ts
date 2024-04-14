@@ -39,12 +39,17 @@ export class HomeScreenComponent implements OnInit, OnDestroy{
       next:(response => {
         this.productList = response;
       }),
-      error:(error => {})
+      error:(error => {
+        console.log(error);
+      })
     });
 
     this.categoryListSubscription = this.productService.getCategoryList().subscribe({
       next:(categoryList => {
         this.categoryList = categoryList;
+      }),
+      error:(error => {
+        console.log(error);
       })
     })
   }

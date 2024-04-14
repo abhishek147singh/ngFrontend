@@ -1,5 +1,5 @@
 export interface ProductListItemModel{
-    id:string;
+    _id:string;
     name:string;
     price:number;
     rating:number;

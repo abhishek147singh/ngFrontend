@@ -3,53 +3,54 @@
         <h1>Register</h1>
 
         <div class="form-container">
-            
-            <div class="input-box">
-                <div class="icon">
-                    <i class="fa-solid fa-user"></i>
+            <form [formGroup]="registerForm" (ngSubmit)="register()">
+                <div class="input-box">
+                    <div class="icon">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="input">
+                        <input type="text" name="name" formControlName="name" placeholder="Name">
+                    </div>
                 </div>
-                <div class="input">
-                    <input type="text" name="name" placeholder="Name">
+    
+    
+                <div class="input-box">
+                    <div class="icon">
+                        <i class="fa-solid fa-envelope"></i>
+                    </div>
+                    <div class="input">
+                        <input type="text" name="email" formControlName="email" placeholder="Email">
+                    </div>
                 </div>
-            </div>
-
-
-            <div class="input-box">
-                <div class="icon">
-                    <i class="fa-solid fa-envelope"></i>
+    
+                <div class="input-box">
+                    <div class="icon">
+                        <i class="fa-solid fa-lock"></i>
+                    </div>
+                    <div class="input">
+                        <input type="password" name="password" formControlName="password" placeholder="Password">
+                    </div>
                 </div>
-                <div class="input">
-                    <input type="text" name="email" placeholder="Email">
+    
+                <div class="input-box">
+                    <div class="icon">
+                        <i class="fa-solid fa-lock"></i>
+                    </div>
+                    <div class="input">
+                        <input type="password" name="password" formControlName="confirmPassword" placeholder="Confirm Password">
+                    </div>
                 </div>
-            </div>
-
-            <div class="input-box">
-                <div class="icon">
-                    <i class="fa-solid fa-lock"></i>
+    
+                @if (errorMsg) {
+                    <div class="error-message">
+                        {{errorMsg}}
+                    </div>
+                }
+    
+                <div class="actions">
+                    <button type="submit">Register</button>
                 </div>
-                <div class="input">
-                    <input type="password" name="password" placeholder="Password">
-                </div>
-            </div>
-
-            <div class="input-box">
-                <div class="icon">
-                    <i class="fa-solid fa-lock"></i>
-                </div>
-                <div class="input">
-                    <input type="password" name="password" placeholder="Confirm Password">
-                </div>
-            </div>
-
-            @if (errorMsg) {
-                <div class="error-message">
-                    {{errorMsg}}
-                </div>
-            }
-
-            <div class="actions">
-                <button type="submit">Register</button>
-            </div>
+            </form>
         </div>
 
         <div class="footer">

@@ -1,8 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../../service/auth.service';
-import { take } from 'rxjs';
+import { Subscription, take } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../store/store.state';
+import { register } from '../../../store/auth/auth.action';
+import { getAuth } from '../../../store/auth/auth.selector';
 
 @Component({
   selector: 'app-register-screen',
@@ -12,7 +16,7 @@ import { take } from 'rxjs';
   styleUrl: './register-screen.component.scss'
 })
 
-export class RegisterScreenComponent {
+export class RegisterScreenComponent implements OnInit, OnDestroy{
   errorMsg:string = '';
   registerForm:FormGroup = new FormGroup({
     'name':new FormControl('', [Validators.required]),
@@ -21,7 +25,19 @@ export class RegisterScreenComponent {
     'confirmPassword':new FormControl('', [Validators.required]),
   });
 
-  constructor(private authService:AuthService){}
+  storeSubscription:Subscription|undefined;
+
+  constructor(private authService:AuthService, private store:Store<AppState>){}
+
+  ngOnInit(): void {
+    this.storeSubscription = this.store.select(getAuth).subscribe(authState => {
+      this.errorMsg = authState.error;
+    })
+  }
+
+  ngOnDestroy(): void {
+    this.storeSubscription?.unsubscribe();
+  }
 
   register(){
     if(this.registerForm.invalid) return;
@@ -36,13 +52,6 @@ export class RegisterScreenComponent {
       return;
     }
 
-    this.authService.register(name, email, password).pipe(take(1)).subscribe({
-      next:(response => {
-
-      }),
-      error:(error => {
-        this.errorMsg = error.message;
-      })
-    })
+    this.store.dispatch(register({username: name, email:email, pass:password, redirectionUrl:'/'}));
   }
 }

@@ -4,12 +4,14 @@ import { authModel } from "../../core/domain/auth/auth.model";
 export const AUTH_STATE = 'auth';
 
 export const loginAction = '[login page] login';
+export const registerAction = '[login page] register';
 export const loginSuccessAction = '[login page] login success';
 export const loginErrorAction = '[login page] login error';
 
 export const logoutAction = '[login page] logout';
 
 export const login = createAction(loginAction , props<{ username: string , pass: string , redirectionUrl:string }> ());
+export const register = createAction(registerAction , props<{ username: string , pass: string, email:string, redirectionUrl:string }> ());
 export const loginSuccess = createAction(loginSuccessAction , props<{ data : authModel }> ());
 export const loginError = createAction(loginErrorAction , props<{ message:string }> ());
 

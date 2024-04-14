@@ -2,6 +2,12 @@ import { Action, createReducer, on } from "@ngrx/store";
 import { cartModel, cartModelState, initialState } from "./cart.state";
 import { addToCart, decrementProductCount, incrementProductCount, removeToCart } from "./cart.action";
 
+const saveCartToLocalStorage = (state:cartModelState) => {
+    if(typeof localStorage !== 'undefined'){
+        localStorage.setItem('cart', JSON.stringify(state));
+    }
+}
+
 const _cartReducer = createReducer(
     initialState,
     on( addToCart , (state, action) => {
@@ -19,13 +25,17 @@ const _cartReducer = createReducer(
             productId:action.productId
         }
 
-        return {items:[...state.items, product], totalItems: state.totalItems + 1};
+        const newState = {items:[...state.items, product], totalItems: state.totalItems + 1}; 
+        saveCartToLocalStorage(newState);
+        return newState;
     }),
 
     on(removeToCart, (state, action) => {
         const items = state.items.filter(product => product.productId !== action.productId);
 
-        return {items, totalItems: state.totalItems - 1};
+        const newState = {items, totalItems: state.totalItems - 1};
+        saveCartToLocalStorage(newState);
+        return newState;
     }),
 
     on(incrementProductCount, (state, action) => {
@@ -37,7 +47,9 @@ const _cartReducer = createReducer(
             return {...product, count: product.count + 1};
         });
 
-        return {items, totalItems: state.totalItems};
+        const newState = {items, totalItems: state.totalItems}; 
+        saveCartToLocalStorage(newState);
+        return newState;
     }),
 
     on(decrementProductCount, (state, action) => {
@@ -46,10 +58,16 @@ const _cartReducer = createReducer(
                 return product;
             }
 
-            return {...product, count: product.count - 1};
+            let productCount = product.count;
+            if(productCount > 0){
+                productCount -= 1; 
+            }
+            return {...product, count: productCount};
         });
 
-        return {items, totalItems: state.totalItems};
+        const newState = {items, totalItems: state.totalItems}; 
+        saveCartToLocalStorage(newState);
+        return newState;
     })
 );
 

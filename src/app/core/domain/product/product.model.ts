@@ -1,9 +1,12 @@
 export interface ProductModel{
-    id:string;
+    _id:string;
     name:string;
-    discription:string;
+    brand:string;
+    description:string;
     price:number;
     rating:number;
-    reviews:number;
-    image:string;
+    noReviews:number;
+    img:string;
+    discount:number;
+    countInStock:number;
 }

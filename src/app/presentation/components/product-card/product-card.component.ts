@@ -17,7 +17,7 @@ export class ProductCardComponent {
   assetsPath = assetsPath;
 
   @Input() productDetails:ProductListItemModel = {
-    id:'',
+    _id:'',
     name:'',
     price:0,
     rating:0,
@@ -30,7 +30,7 @@ export class ProductCardComponent {
   @Output() addToCartEmt = new EventEmitter<{ productId:string; Image:string; Name:string; price:number; count:number;}> ();
 
   onAddToCart(){
-    this.addToCartEmt.emit({productId:this.productDetails.name, Image:this.productDetails.img, Name:this.productDetails.name, price:this.getActualPrice(this.productDetails.price, this.productDetails.discount) , count:1});
+    this.addToCartEmt.emit({productId:this.productDetails._id, Image:this.productDetails.img, Name:this.productDetails.name, price:this.getActualPrice(this.productDetails.price, this.productDetails.discount) , count:1});
   }
 
   getActualPrice(price:number, discount:number){

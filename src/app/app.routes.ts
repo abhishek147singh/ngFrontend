@@ -7,6 +7,7 @@ import { FilterProductScreenComponent } from './presentation/screens/filter-prod
 import { ShippingScreenComponent } from './presentation/screens/shipping-screen/shipping-screen.component';
 import { LoginScreenComponent } from './presentation/screens/login-screen/login-screen.component';
 import { RegisterScreenComponent } from './presentation/screens/register-screen/register-screen.component';
+import { PaymentScreenComponent } from './presentation/screens/payment-screen/payment-screen.component';
 
 export const routes: Routes = [
     {path:'', component:HomeScreenComponent},
@@ -17,4 +18,5 @@ export const routes: Routes = [
     {path:'contact-us', component:ContactUsScreenComponent},
     {path:'shop', component:FilterProductScreenComponent},
     {path:'shipping', component:ShippingScreenComponent},
+    {path:'payment', component:PaymentScreenComponent},
 ];

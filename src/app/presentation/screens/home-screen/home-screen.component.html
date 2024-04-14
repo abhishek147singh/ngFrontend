@@ -10,14 +10,14 @@
 <app-section title="Categories">
     <div class="list">
         @for (category of categoryList; track category._id) {
-            <app-category-card [image]="category.name" [name]="category.name" [noProducts]="category.noProducts"></app-category-card>
+            <app-category-card [image]="category.image" [name]="category.name" [noProducts]="category.noProducts"></app-category-card>
         }
     </div>
 </app-section>
 
 <app-section title="Featured products">
     <div class="list">
-        @for (product of productList; track product.id) {
+        @for (product of productList; track product._id) {
             <app-product-card [productDetails]="product" (addToCartEmt)="addToCart($event)"></app-product-card>
         }
     </div>
@@ -25,7 +25,7 @@
 
 <app-section title="Recent products">
     <div class="list">
-        @for (product of productList; track product.id) {
+        @for (product of productList; track product._id) {
             <app-product-card [productDetails]="product" (addToCartEmt)="addToCart($event)"></app-product-card>
         }
     </div>
