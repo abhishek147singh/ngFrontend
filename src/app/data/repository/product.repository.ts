@@ -15,6 +15,10 @@ import { AppState } from "../../store/store.state";
 import { getAuth } from "../../store/auth/auth.selector";
 import { ReviewListItemModel } from "../../core/domain/product/review-list-item.model";
 import { ReviewListEntity } from "../../entity/product/review-list-item.model";
+import { categoryNameListItemModel } from "../../core/domain/product/category-name-list.model";
+import { CategoryNameListEntity } from "../../entity/product/category-name-list.entity";
+import { ProductFilterProductListItemModel } from "../../core/domain/product/product-filter-list.model";
+import { ProductFilterListEntity } from "../../entity/product/productFilterList.model";
 
 @Injectable({
     providedIn: 'root'
@@ -35,6 +39,20 @@ export class ProudctRepository extends IProductRepository{
         const url = `${baseUrl}/api/product/`;
 
         return this.http.get<ProductListEntity>(url).pipe(
+            map(response => {
+                if (response.status) {
+                    return response.data;
+                }
+
+                throw new Error(response.message);
+            })
+        );
+    }
+
+    override getfilterProductList(page: number, query: string, category: string, price: string, rating: string, order: string,brand:string):Observable<ProductFilterProductListItemModel>{
+        const url = `${baseUrl}/api/product/search?page=${page}&query=${query}&category=${category}&price=${price}&rating=${rating}&order=${order}&brand=${brand}`;
+
+        return this.http.get<ProductFilterListEntity>(url).pipe(
             map(response => {
                 if (response.status) {
                     return response.data;
@@ -93,6 +111,20 @@ export class ProudctRepository extends IProductRepository{
         const url = `${baseUrl}/api/review/${productId}`;
      
         return this.http.get<ReviewListEntity> (url).pipe(
+            map(response => {
+                if (response.status) {
+                    return response.data;
+                }
+
+                throw new Error(response.message);
+            })
+        );
+    }
+
+    override getCategoryNameList(): Observable<categoryNameListItemModel[]> {
+        const url = `${baseUrl}/api/category/`;
+     
+        return this.http.get<CategoryNameListEntity> (url).pipe(
             map(response => {
                 if (response.status) {
                     return response.data;

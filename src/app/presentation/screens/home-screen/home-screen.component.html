@@ -10,7 +10,9 @@
 <app-section title="Categories">
     <div class="list">
         @for (category of categoryList; track category._id) {
-            <app-category-card [image]="category.image" [name]="category.name" [noProducts]="category.noProducts"></app-category-card>
+            <a [routerLink]="['/', 'shop']" [queryParams]="{'category':category._id}">
+                <app-category-card [image]="category.image" [name]="category.name" [noProducts]="category.noProducts"></app-category-card>
+            </a>
         }
     </div>
 </app-section>

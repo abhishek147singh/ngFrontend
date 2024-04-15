@@ -184,6 +184,12 @@ $yellow:#FFD333;
     }
 }
 
+@media screen and (max-width:1480px) {
+    .slider-container{
+        grid-template-columns: 1fr 320px;
+    }
+}
+
 @media screen and (max-width:1240px) {
     .slider-container{
         grid-template-columns: 1fr;

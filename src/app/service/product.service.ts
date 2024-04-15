@@ -7,6 +7,8 @@ import { ProductModel } from "../core/domain/product/product.model";
 import { CategoryListItemModel } from "../core/domain/product/category-list-item.model";
 import { SimpleResponse } from "../core/domain/simple-response.model";
 import { ReviewListItemModel } from "../core/domain/product/review-list-item.model";
+import { categoryNameListItemModel } from "../core/domain/product/category-name-list.model";
+import { ProductFilterProductListItemModel } from "../core/domain/product/product-filter-list.model";
 
 @Injectable({
     providedIn:'root'
@@ -20,6 +22,10 @@ export class ProductService extends IProductService{
 
     override getProductList(): Observable<ProductListItemModel[]> {
         return this.productRepository.getProductList();
+    }
+
+    override getfilterProductList(page: number, query: string, category: string, price: string, rating: string, order: string, brand:string): Observable<ProductFilterProductListItemModel> {
+        return this.productRepository.getfilterProductList(page, query, category, price, rating, order, brand);
     }
 
     override getProductDetails(id: string): Observable<ProductModel> {
@@ -36,5 +42,9 @@ export class ProductService extends IProductService{
 
     override getProductReviewList(productId: string): Observable<ReviewListItemModel[]> {
         return this.productRepository.getProductReviewList(productId);
+    }
+
+    override getCategoryNameList(): Observable<categoryNameListItemModel[]> {
+        return this.productRepository.getCategoryNameList();
     }
 }

@@ -23,12 +23,9 @@
 
             <div class="drop-down" [@expandPanel]="isCategoryDropDownActive ? 'expanded' : 'collapsed'">
                 <ul>
-                    <li><a href="#">Shirts</a></li>
-                    <li><a href="#">Jeans</a></li>
-                    <li><a href="#">Sleepwear</a></li>
-                    <li><a href="#">Sportswear</a></li>
-                    <li><a href="#">Jackets</a></li>
-                    <li><a href="#">shoes</a></li>
+                    @for (category of categoryList|async; track category._id) {
+                        <li><a [routerLink]="['/', 'shop']" [queryParams]="{'category':category._id}">{{category.name}}</a></li>
+                    }
                 </ul>
             </div>
         </div>

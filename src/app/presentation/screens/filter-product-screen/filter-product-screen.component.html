@@ -14,20 +14,17 @@
             <button class="menu-btn">Sorting</button>
             <button class="menu-btn">Showing</button>
         </div>
-        <div class="product-list">
-            <app-product-card></app-product-card>
-            <app-product-card></app-product-card>
-            <app-product-card></app-product-card>
-            <app-product-card></app-product-card>
-            <app-product-card></app-product-card>
-            <app-product-card></app-product-card>
-            <app-product-card></app-product-card>
-            <app-product-card></app-product-card>
-        </div>
-        
-        <div class="pagination-container">
-            <app-pagination></app-pagination>
-        </div>
+        <ng-container *ngIf="(productList|async) as Products">
+            <div class="product-list">
+                @for (product of Products.products; track product._id) {
+                    <app-product-card [productDetails]="product"></app-product-card>
+                }
+            </div>
+            
+            <div class="pagination-container">
+                <app-pagination></app-pagination>
+            </div>
+        </ng-container>
     </div>
 </div>
 

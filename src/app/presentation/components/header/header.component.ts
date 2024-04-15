@@ -3,13 +3,16 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../store/store.state';
 import { getTotalNoProducts } from '../../../store/cart/cart.selector';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { RouterLink } from '@angular/router';
+import { ProductService } from '../../../service/product.service';
+import { categoryNameListItemModel } from '../../../core/domain/product/category-name-list.model';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, AsyncPipe],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
   animations:[
@@ -38,12 +41,16 @@ export class HeaderComponent implements OnInit, OnDestroy{
   totalCartProducts:number = 0;
   cartProductSubscription:Subscription|undefined;
 
-  constructor(private store:Store<AppState>){}
+  categoryList:Observable<categoryNameListItemModel[]>|undefined
+
+  constructor(private store:Store<AppState>, private productService:ProductService){}
 
   ngOnInit(): void {
     this.cartProductSubscription = this.store.select(getTotalNoProducts).subscribe(total => {
       this.totalCartProducts = total;
     })
+
+    this.categoryList = this.productService.getCategoryNameList();
   }
 
   ngOnDestroy(): void {

@@ -13,11 +13,12 @@ import { ProductListItemModel } from '../../../core/domain/product/product-list-
 import { Subscription } from 'rxjs';
 import { ProductService } from '../../../service/product.service';
 import { CategoryListItemModel } from '../../../core/domain/product/category-list-item.model';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home-screen',
   standalone: true,
-  imports: [ProductCardComponent, SliderComponent, SectionComponent,CategoryCardComponent,FreaturCardComponent, ImageCardSliderComponent],
+  imports: [ProductCardComponent, SliderComponent, SectionComponent,CategoryCardComponent,FreaturCardComponent, ImageCardSliderComponent, RouterLink],
   templateUrl: './home-screen.component.html',
   styleUrl: './home-screen.component.scss'
 })
