@@ -28,6 +28,21 @@ export class FilterProductScreenComponent implements OnInit, OnDestroy{
   order:string = 'newest';
   brand:string = 'all';
 
+  brandFilterInputs:{
+    label:string;
+    value:string;
+    noProducts:number;
+  }[] = [
+    {label:'string1',value:'1',noProducts:0},
+    {label:'string2',value:'2',noProducts:0},
+    {label:'string3',value:'3',noProducts:0},
+    {label:'string4',value:'4',noProducts:0},
+    {label:'string5',value:'5',noProducts:0},
+    {label:'string5',value:'5',noProducts:0},
+    {label:'string5',value:'5',noProducts:0},
+    {label:'string5',value:'5',noProducts:0},
+  ]; 
+
   productList:Observable<ProductFilterProductListItemModel>|undefined;
 
   constructor(private route: ActivatedRoute, private productService:ProductService){}
@@ -52,5 +67,9 @@ export class FilterProductScreenComponent implements OnInit, OnDestroy{
 
   ngOnDestroy(): void {
     this.routeSubscription?.unsubscribe();
+  }
+
+  onBrandSelect(brands:string[]){
+    console.log(brands);
   }
 }

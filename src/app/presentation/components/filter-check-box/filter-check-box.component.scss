@@ -43,12 +43,13 @@ $yellow:#FFD333;
             width: 20px;
             height: 20px;
             border: 1px solid #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
             &.active{
                 background-color: $yellow;
                 color: #fff;
-                padding-left: 2px;
-                padding-bottom: 3px;
             }
         }
     }

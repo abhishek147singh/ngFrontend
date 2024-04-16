@@ -6,7 +6,12 @@
         <h2>Filters</h2>
         
         <div class="filter-list">
-            <app-filter></app-filter>
+            <div class="filter">
+                <app-filter [heading]="'Filter By Brand'" (onSelectEmt)="onBrandSelect($event)" [filterInputs]="brandFilterInputs" [isMultiLevel]="true"></app-filter>
+            </div>
+            <div class="filter">
+                <app-filter [heading]="'Filter By Brand'" (onSelectEmt)="onBrandSelect($event)" [filterInputs]="brandFilterInputs" [isMultiLevel]="true"></app-filter>
+            </div>
         </div>
     </div>
     <div class="products-container">

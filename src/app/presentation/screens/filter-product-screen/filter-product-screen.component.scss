@@ -1,5 +1,6 @@
 .container{
     width: 100%;
+    height: auto;
     display: grid;
     grid-template-columns: 400px 1fr;
 
@@ -20,6 +21,10 @@
 
     .filter-list{
         width: 100%;
+
+        .filter{
+            margin-bottom: 20px;
+        }
     }
 
     .products-container{

@@ -9,17 +9,14 @@ import { Component, EventEmitter, Input, Output, input } from '@angular/core';
 })
 
 export class FilterCheckBoxComponent {
- isSelected:boolean = false;
+  @Input() isSelected:boolean = false;
+  @Input() lableText:string = '';
+  @Input() noProducts:number = 0;
+  @Input() value:string = '';
 
- @Input() lableText:string = '';
-
- @Input() noProducts:number = 0;
-
-  @Output() onSelectEmt = new EventEmitter<boolean> ();
+  @Output() onSelectEmt = new EventEmitter<string> ();
 
   onSelect(){
-    this.isSelected = !this.isSelected;
-
-    this.onSelectEmt.emit(this.isSelected);
+    this.onSelectEmt.emit(this.value);
   }
 }
