@@ -1,35 +1,34 @@
 <app-breadcrumb [urlArrays]="[{title:'home', url:'/'}]" [activeUrlTitle]="'Shop List'"></app-breadcrumb>
 <app-back-to-top></app-back-to-top>
 <div class="container">
-    
-    <div class="filter-header">
-        <h2>Filters</h2>
-        
-        <div class="filter-list">
-            <div class="filter">
-                <app-filter [heading]="'Filter By Brand'" (onSelectEmt)="onBrandSelect($event)" [filterInputs]="brandFilterInputs" [isMultiLevel]="true"></app-filter>
-            </div>
-            <div class="filter">
-                <app-filter [heading]="'Filter By Brand'" (onSelectEmt)="onBrandSelect($event)" [filterInputs]="brandFilterInputs" [isMultiLevel]="true"></app-filter>
+    <ng-container *ngIf="(productList|async) as Products">
+        <div class="filter-header">
+            <h2>Filters</h2>
+            
+            <div class="filter-list">
+                <div class="filter">
+                    <app-filter [heading]="'Filter By Category'" (onSelectEmt)="onCategorySelect($event)" [filterInputs]="mapBrandAndCategoryList(Products.category)" [isMultiLevel]="true"></app-filter>
+                </div>
+                <div class="filter">
+                    <app-filter [heading]="'Filter By Brand'" (onSelectEmt)="onBrandSelect($event)" [filterInputs]="mapBrandAndCategoryList(Products.brand)" [isMultiLevel]="true"></app-filter>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="products-container">
-        <div class="header">
-            <button class="menu-btn">Sorting</button>
-            <button class="menu-btn">Showing</button>
-        </div>
-        <ng-container *ngIf="(productList|async) as Products">
-            <div class="product-list">
-                @for (product of Products.products; track product._id) {
-                    <app-product-card [productDetails]="product"></app-product-card>
-                }
+        <div class="products-container">
+            <div class="header">
+                <app-toggle-menu [initialValue]="order" (onChange)="onOrderChange($event)" [optionList]="[{title:'Lowest', value:'lowest'},{title:'Highest', value:'highest'},{title:'Newest', value:'newest'}]"></app-toggle-menu>
             </div>
             
-            <div class="pagination-container">
-                <app-pagination></app-pagination>
-            </div>
-        </ng-container>
-    </div>
+                <div class="product-list">
+                    @for (product of Products.products; track product._id) {
+                        <app-product-card [productDetails]="product"></app-product-card>
+                    }
+                </div>
+                
+                <div class="pagination-container">
+                    <app-pagination (onPageChange)="onPageChange($event)" [currentPage]="Products.page - 1" [noPages]="Products.pages"></app-pagination>
+                </div>
+        </div>
+    </ng-container>
 </div>
 

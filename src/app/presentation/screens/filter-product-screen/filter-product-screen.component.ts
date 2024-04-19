@@ -9,11 +9,12 @@ import { Observable, Subscription } from 'rxjs';
 import { ProductService } from '../../../service/product.service';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { ProductFilterProductListItemModel } from '../../../core/domain/product/product-filter-list.model';
+import { ToggleMenuComponent } from '../../components/toggle-menu/toggle-menu.component';
 
 @Component({
   selector: 'app-filter-product-screen',
   standalone: true,
-  imports: [BreadcrumbComponent, AsyncPipe , NgIf , ProductCardComponent, PaginationComponent, FilterComponent, BackToTopComponent],
+  imports: [BreadcrumbComponent, AsyncPipe , NgIf , ProductCardComponent, PaginationComponent, FilterComponent, BackToTopComponent, ToggleMenuComponent],
   templateUrl: './filter-product-screen.component.html',
   styleUrl: './filter-product-screen.component.scss'
 })
@@ -52,9 +53,12 @@ export class FilterProductScreenComponent implements OnInit, OnDestroy{
       this.category =  this.setValueFromUrl(queryState['category']);
       this.brand = this.setValueFromUrl(queryState['brand']);
       this.query = this.setValueFromUrl(queryState['query']);
-
-      this.productList = this.productService.getfilterProductList(this.page, this.query, this.category, this.price, this.rating, this.order, this.brand);
+      this.refreshList();
     });
+  }
+
+  refreshList(){
+    this.productList = this.productService.getfilterProductList(this.page, this.query, this.category, this.price, this.rating, this.order, this.brand);
   }
 
   setValueFromUrl(value:any){
@@ -65,11 +69,34 @@ export class FilterProductScreenComponent implements OnInit, OnDestroy{
     return 'all';
   }
 
+  onPageChange(pageNo:number){
+    this.page = pageNo + 1;
+    this.refreshList();
+  }
+
+  onOrderChange(order:string){
+    this.order = order;
+    this.refreshList();
+  }
+
   ngOnDestroy(): void {
     this.routeSubscription?.unsubscribe();
   }
 
   onBrandSelect(brands:string[]){
     console.log(brands);
+  }
+
+  onCategorySelect(categories:string[]){
+    console.log(categories);
+  }
+
+  mapBrandAndCategoryList(data:{_id: string; name: string; noProducts: number; image: string}[]){
+    /**
+     *    label:string;
+    value:string;
+    noProducts:number;
+     */
+    return data.map(value => { return {label: value.name, value:value._id, noProducts:value.noProducts};});
   }
 }

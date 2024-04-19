@@ -5,4 +5,6 @@ export interface ProductFilterProductListItemModel{
     countProducts:number;
     page:number;
     pages:number;
+    brand:{  _id: string; name: string; noProducts: number; image: string}[];
+    category:{  _id: string; name: string; noProducts: number; image: string}[];
 }

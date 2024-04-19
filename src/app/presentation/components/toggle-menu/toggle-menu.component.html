@@ -1,0 +1,11 @@
+<div class="menu-btn-container">
+    Sort By:
+    <button class="menu-btn" [ngClass]="{'active': isOpen}" (click)="isOpen = !isOpen">
+        {{selectedValue}}
+    </button>
+    <div class="option-list">
+        @for (option of optionList; track $index) {
+            <button class="option" (click)="onSelect(option.value)">{{option.title}}</button>
+        }
+    </div>
+</div>

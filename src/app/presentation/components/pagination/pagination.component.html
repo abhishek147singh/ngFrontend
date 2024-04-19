@@ -1,7 +1,9 @@
-<div class="pagination">
-    <button class="disable">Previous</button>
-    <button class="active">1</button>
-    <button>2</button>
-    <button>3</button>
-    <button>Next</button>
-</div>
+@if (noPages > 1) {
+    <div class="pagination">
+        <button [ngClass]="{'disable': currentPage === 0}" (click)="onPrev()">Previous</button>
+        @for (page of pages; track $index) {
+            <button [class.active]="currentPage === page" (click)="onUpdatePage(page)">{{page + 1}}</button>
+        }
+        <button [ngClass]="{'disable': currentPage === noPages - 1}" (click)="onNext()">Next</button>
+    </div>
+}

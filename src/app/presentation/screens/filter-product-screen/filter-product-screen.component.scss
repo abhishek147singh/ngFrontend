@@ -6,11 +6,11 @@
 
     .filter-header{
         width: 100%;
-        height: 50px;
-        
+        height: 100%;    
+
         h2{
             width: 100%;
-            height: 100%;
+            height: 50px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -29,6 +29,8 @@
 
     .products-container{
         width: 100%;
+        display: grid;
+        grid-template-rows: 60px 1fr 90px;
 
         .header{
             width: 100%;
@@ -60,10 +62,41 @@
 
 .pagination-container{
     width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
-    margin: 15px 0 50px 0;
+    align-items: center;
 }
+
+.menu-btn{
+    position: relative;
+
+    .option-list{
+        width: 150px;
+        position: absolute;
+        z-index: 10;
+        background-color: #fff;
+        right: 0;
+        top: 100%;
+        box-shadow: 2px 2px 5px rgba($color: #000000, $alpha: 0.1);
+
+        .option{
+            width: 100%;
+            padding: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: transparent;
+            outline: none;
+            border: none;
+            color: #666;
+
+            &:hover{
+                background-color: #efeeef;
+            }
+        }
+    }
+}
+
 
 @media screen and (max-width:1250px) {
     .container{
