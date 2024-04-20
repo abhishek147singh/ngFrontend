@@ -7,4 +7,5 @@ export interface ProductFilterProductListItemModel{
     pages:number;
     brand:{  _id: string; name: string; noProducts: number; image: string}[];
     category:{  _id: string; name: string; noProducts: number; image: string}[];
+    PriceRange: { maxPrice: number; minPrice: number;}
 }

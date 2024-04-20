@@ -4,17 +4,28 @@ import { ProductCardComponent } from '../../components/product-card/product-card
 import { PaginationComponent } from '../../components/pagination/pagination.component';
 import { FilterComponent } from '../../components/filter/filter.component';
 import { BackToTopComponent } from '../../components/back-to-top/back-to-top.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { ProductService } from '../../../service/product.service';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { ProductFilterProductListItemModel } from '../../../core/domain/product/product-filter-list.model';
 import { ToggleMenuComponent } from '../../components/toggle-menu/toggle-menu.component';
+import { PriceFilterComponent } from '../../components/price-filter/price-filter.component';
 
 @Component({
   selector: 'app-filter-product-screen',
   standalone: true,
-  imports: [BreadcrumbComponent, AsyncPipe , NgIf , ProductCardComponent, PaginationComponent, FilterComponent, BackToTopComponent, ToggleMenuComponent],
+  imports: [
+    BreadcrumbComponent, 
+    AsyncPipe, 
+    NgIf, 
+    ProductCardComponent, 
+    PaginationComponent, 
+    FilterComponent, 
+    BackToTopComponent, 
+    ToggleMenuComponent,
+    PriceFilterComponent
+  ],
   templateUrl: './filter-product-screen.component.html',
   styleUrl: './filter-product-screen.component.scss'
 })
@@ -28,6 +39,7 @@ export class FilterProductScreenComponent implements OnInit, OnDestroy{
   rating:string = 'all';
   order:string = 'newest';
   brand:string = 'all';
+  brands:string[] = [];
 
   brandFilterInputs:{
     label:string;
@@ -46,19 +58,32 @@ export class FilterProductScreenComponent implements OnInit, OnDestroy{
 
   productList:Observable<ProductFilterProductListItemModel>|undefined;
 
-  constructor(private route: ActivatedRoute, private productService:ProductService){}
+  constructor(
+    private route: ActivatedRoute, 
+    private productService:ProductService,
+    private router:Router
+  ){}
 
   ngOnInit(): void {
     this.routeSubscription = this.route.queryParams.subscribe(queryState => {
       this.category =  this.setValueFromUrl(queryState['category']);
       this.brand = this.setValueFromUrl(queryState['brand']);
       this.query = this.setValueFromUrl(queryState['query']);
+      if(this.brand){
+        this.brands = this.brand.split('-');
+      }
       this.refreshList();
     });
   }
 
   refreshList(){
     this.productList = this.productService.getfilterProductList(this.page, this.query, this.category, this.price, this.rating, this.order, this.brand);
+  }
+
+  changeUrl(category:string,brand:string,query:string){
+    this.router.navigate(['/', 'shop'], {
+      queryParams:{ category,brand,query }
+    });
   }
 
   setValueFromUrl(value:any){
@@ -76,6 +101,7 @@ export class FilterProductScreenComponent implements OnInit, OnDestroy{
 
   onOrderChange(order:string){
     this.order = order;
+    this.page = 1;
     this.refreshList();
   }
 
@@ -84,19 +110,36 @@ export class FilterProductScreenComponent implements OnInit, OnDestroy{
   }
 
   onBrandSelect(brands:string[]){
-    console.log(brands);
+    this.brand = brands.join('-');
+    this.page = 1;
+    this.changeUrl(this.category, this.brand, this.query);
+  }
+
+  onPriceRangeChange(priceRange:{min:number; max:number}){
+    if(priceRange.min === 0 && priceRange.max === 0){
+      this.price = `all`;
+      this.page = 1;
+      this.refreshList();
+    }else{
+      this.price = `${priceRange.min}-${priceRange.max}`;
+      this.page = 1;
+      this.refreshList();
+    }
   }
 
   onCategorySelect(categories:string[]){
-    console.log(categories);
+    if(categories.length > 0){
+      const category = categories[0];
+      this.page = 1;
+      this.changeUrl(category, this.brand, this.query);
+    }else{
+      const category = '';
+      this.page = 1;
+      this.changeUrl(category, this.brand, this.query);
+    }
   }
 
   mapBrandAndCategoryList(data:{_id: string; name: string; noProducts: number; image: string}[]){
-    /**
-     *    label:string;
-    value:string;
-    noProducts:number;
-     */
     return data.map(value => { return {label: value.name, value:value._id, noProducts:value.noProducts};});
   }
 }

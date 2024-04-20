@@ -1,0 +1,20 @@
+<div class="filter-container">
+    <h3>Filter By Price</h3>
+
+    <form [formGroup]="priceFilterForm">
+        <div class="filter-values">
+            <div class="value">
+                <label for="Min">Min:</label>
+                <input type="number" formControlName="min" id="Min">
+            </div>
+            <div class="value">
+                <label for="Max">Max:</label>
+                <input type="number" formControlName="max" id="Max">
+            </div>
+        </div>
+        <div class="actions">
+            <button class="btn" (click)="onSubmit()">Find</button>
+            <button class="btn reset" (click)="onClear()">Reset</button>
+        </div>
+    </form>
+</div>

@@ -7,10 +7,13 @@
             
             <div class="filter-list">
                 <div class="filter">
-                    <app-filter [heading]="'Filter By Category'" (onSelectEmt)="onCategorySelect($event)" [filterInputs]="mapBrandAndCategoryList(Products.category)" [isMultiLevel]="true"></app-filter>
+                    <app-price-filter (onSubmitEmt)="onPriceRangeChange($event)" [min]="Products.PriceRange.minPrice" [max]="Products.PriceRange.maxPrice"></app-price-filter>
                 </div>
                 <div class="filter">
-                    <app-filter [heading]="'Filter By Brand'" (onSelectEmt)="onBrandSelect($event)" [filterInputs]="mapBrandAndCategoryList(Products.brand)" [isMultiLevel]="true"></app-filter>
+                    <app-filter [heading]="'Filter By Category'" [initialSelectedValues]="[category]" (onSelectEmt)="onCategorySelect($event)" [filterInputs]="mapBrandAndCategoryList(Products.category)" [isMultiLevel]="false"></app-filter>
+                </div>
+                <div class="filter">
+                    <app-filter [heading]="'Filter By Brand'" [initialSelectedValues]="brands" (onSelectEmt)="onBrandSelect($event)" [filterInputs]="mapBrandAndCategoryList(Products.brand)" [isMultiLevel]="true"></app-filter>
                 </div>
             </div>
         </div>
