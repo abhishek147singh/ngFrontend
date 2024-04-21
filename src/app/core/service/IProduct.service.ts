@@ -6,9 +6,12 @@ import { SimpleResponse } from "../domain/simple-response.model";
 import { ReviewListItemModel } from "../domain/product/review-list-item.model";
 import { categoryNameListItemModel } from "../domain/product/category-name-list.model";
 import { ProductFilterProductListItemModel } from "../domain/product/product-filter-list.model";
+import { BrandListItemModel } from "../domain/product/brand-list-item.model";
 
 export abstract class IProductService{
     abstract getProductList():Observable<ProductListItemModel[]>;
+
+    abstract getRecentlyAddedProductList():Observable<ProductListItemModel[]>;
 
     abstract getfilterProductList(page:number, query:string, category:string, price:string, rating:string,order:string,brand:string):Observable<ProductFilterProductListItemModel>;
 
@@ -21,4 +24,6 @@ export abstract class IProductService{
     abstract getProductReviewList(productId:string):Observable<ReviewListItemModel[]>;
 
     abstract getCategoryNameList():Observable<categoryNameListItemModel[]>;
+
+    abstract getBrandList():Observable<BrandListItemModel[]>;
 }

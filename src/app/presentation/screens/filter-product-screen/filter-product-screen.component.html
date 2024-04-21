@@ -10,6 +10,9 @@
                     <app-price-filter (onSubmitEmt)="onPriceRangeChange($event)" [min]="Products.PriceRange.minPrice" [max]="Products.PriceRange.maxPrice"></app-price-filter>
                 </div>
                 <div class="filter">
+                    <app-rating-filter [initialRating]="rating" (onSelectEmt)="onRatingChange($event)"></app-rating-filter>
+                </div>
+                <div class="filter">
                     <app-filter [heading]="'Filter By Category'" [initialSelectedValues]="[category]" (onSelectEmt)="onCategorySelect($event)" [filterInputs]="mapBrandAndCategoryList(Products.category)" [isMultiLevel]="false"></app-filter>
                 </div>
                 <div class="filter">
@@ -25,6 +28,8 @@
                 <div class="product-list">
                     @for (product of Products.products; track product._id) {
                         <app-product-card [productDetails]="product"></app-product-card>
+                    }@empty {
+                        <p>No Product Available!!</p>
                     }
                 </div>
                 

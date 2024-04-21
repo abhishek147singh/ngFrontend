@@ -3,6 +3,7 @@ export interface ProductModel{
     name:string;
     brand:string;
     description:string;
+    information:string;
     price:number;
     rating:number;
     noReviews:number;

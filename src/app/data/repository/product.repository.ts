@@ -19,6 +19,8 @@ import { categoryNameListItemModel } from "../../core/domain/product/category-na
 import { CategoryNameListEntity } from "../../entity/product/category-name-list.entity";
 import { ProductFilterProductListItemModel } from "../../core/domain/product/product-filter-list.model";
 import { ProductFilterListEntity } from "../../entity/product/productFilterList.model";
+import { BrandListItemModel } from "../../core/domain/product/brand-list-item.model";
+import { BrandListEntity } from "../../entity/product/brand-list.entity";
 
 @Injectable({
     providedIn: 'root'
@@ -37,6 +39,20 @@ export class ProudctRepository extends IProductRepository{
 
     override getProductList(): Observable<ProductListItemModel[]> {
         const url = `${baseUrl}/api/product/`;
+
+        return this.http.get<ProductListEntity>(url).pipe(
+            map(response => {
+                if (response.status) {
+                    return response.data;
+                }
+
+                throw new Error(response.message);
+            })
+        );
+    }
+
+    override getRecentlyAddedProductList(): Observable<ProductListItemModel[]> {
+        const url = `${baseUrl}/api/product/recentProducts`;
 
         return this.http.get<ProductListEntity>(url).pipe(
             map(response => {
@@ -125,6 +141,20 @@ export class ProudctRepository extends IProductRepository{
         const url = `${baseUrl}/api/category/`;
      
         return this.http.get<CategoryNameListEntity> (url).pipe(
+            map(response => {
+                if (response.status) {
+                    return response.data;
+                }
+
+                throw new Error(response.message);
+            })
+        );
+    }
+
+    override getBrandList(): Observable<BrandListItemModel[]> {
+        const url = `${baseUrl}/api/brand/list`;
+
+        return this.http.get<BrandListEntity> (url).pipe(
             map(response => {
                 if (response.status) {
                     return response.data;

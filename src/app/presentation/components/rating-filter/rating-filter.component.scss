@@ -1,0 +1,145 @@
+$light-font-color:#6C757D;
+$dark-font-color:#3D464D;
+$yellow:#FFD333; 
+
+.filter-container{
+    background-color: #fff;
+    width: calc(100% - 20px);
+    padding: 30px 20px;
+
+    h3{
+        font-size: 18px;
+        font-weight: 600;
+        color: $dark-font-color;
+    }
+
+    .filter-values{
+        padding-top: 10px;
+        width: 100%;
+        height: 100%;
+        max-height: 290px;
+        overflow-y: auto;
+    }
+}
+
+.selectedValue{
+    position: relative;
+    width: calc(100% - 20px);
+
+    .head{
+        width: 100%;
+        margin-top: 20px;
+        height: 40px;
+        border: 1px solid #FFD333;
+        color: #FFD333;
+        display: grid;
+        grid-template-columns: 1fr 50px;
+        cursor: pointer;
+    
+        .star-group{
+            padding-left: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            font-size: 20px;
+        }
+    
+        .icon{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    .body{
+        display: none;
+        position: absolute;
+        width: 100%;
+        top: 100%;
+        left: 0;
+        background-color: #fff;
+        box-shadow: 4px 4px 4px rgba($color: #000000, $alpha: 0.1);
+
+        &.active{
+            display: block;
+        }
+
+        .option{
+            padding-inline: 10px;
+            width: 100%;
+            height: 40px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            cursor: pointer;
+            color: #FFD333;
+            font-size: 18px;
+
+            &:hover{
+                background-color: #efefef;
+            }
+        }
+    }
+    
+}
+
+.filter-row{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 20px 1fr;
+    padding: 5px;
+    margin: 10px 0;
+    font-size: 18px;
+    color: $light-font-color;
+    cursor: pointer;
+
+    .text-details{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .text{
+            font-weight: 500;
+            color: $light-font-color;
+            padding-left: 10px;
+
+            i{
+                margin-left: 5px;
+                font-size: 20px;
+                color: #FFD333;
+            }
+        }
+
+        .number{
+            font-size: 16px;
+            font-weight: 400;
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+        }
+    }
+    
+    .check-box{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .icon-box{
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 1px solid #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &.active{
+                background-color: $yellow;
+                color: #fff;
+            }
+        }
+    }
+}

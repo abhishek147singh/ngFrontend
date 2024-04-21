@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ProductRatingComponent } from '../product-rating/product-rating.component';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ProductListItemModel } from '../../../core/domain/product/product-list-item.model';
 import { assetsPath } from '../../../../environment';
 
@@ -27,6 +27,8 @@ export class ProductCardComponent {
     noReviews:0
   };
 
+  constructor(private router:Router){}
+
   @Output() addToCartEmt = new EventEmitter<{ productId:string; Image:string; Name:string; price:number; count:number;}> ();
 
   onAddToCart(){
@@ -35,5 +37,11 @@ export class ProductCardComponent {
 
   getActualPrice(price:number, discount:number){
     return (price - (price* (discount/100)));
+  }
+
+  search(query:string){
+    this.router.navigate(['/', 'shop'], {
+      queryParams:{ query }
+    });
   }
 }

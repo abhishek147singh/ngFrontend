@@ -11,6 +11,7 @@ import { AsyncPipe, NgIf } from '@angular/common';
 import { ProductFilterProductListItemModel } from '../../../core/domain/product/product-filter-list.model';
 import { ToggleMenuComponent } from '../../components/toggle-menu/toggle-menu.component';
 import { PriceFilterComponent } from '../../components/price-filter/price-filter.component';
+import { RatingFilterComponent } from '../../components/rating-filter/rating-filter.component';
 
 @Component({
   selector: 'app-filter-product-screen',
@@ -24,7 +25,8 @@ import { PriceFilterComponent } from '../../components/price-filter/price-filter
     FilterComponent, 
     BackToTopComponent, 
     ToggleMenuComponent,
-    PriceFilterComponent
+    PriceFilterComponent,
+    RatingFilterComponent
   ],
   templateUrl: './filter-product-screen.component.html',
   styleUrl: './filter-product-screen.component.scss'
@@ -65,10 +67,16 @@ export class FilterProductScreenComponent implements OnInit, OnDestroy{
   ){}
 
   ngOnInit(): void {
+    this.page = 1;
     this.routeSubscription = this.route.queryParams.subscribe(queryState => {
       this.category =  this.setValueFromUrl(queryState['category']);
       this.brand = this.setValueFromUrl(queryState['brand']);
       this.query = this.setValueFromUrl(queryState['query']);
+      
+      if(queryState['page']){
+        this.page = queryState['page'];
+      }
+
       if(this.brand){
         this.brands = this.brand.split('-');
       }
@@ -80,9 +88,9 @@ export class FilterProductScreenComponent implements OnInit, OnDestroy{
     this.productList = this.productService.getfilterProductList(this.page, this.query, this.category, this.price, this.rating, this.order, this.brand);
   }
 
-  changeUrl(category:string,brand:string,query:string){
+  changeUrl(category:string,brand:string,query:string, page:number){
     this.router.navigate(['/', 'shop'], {
-      queryParams:{ category,brand,query }
+      queryParams:{ category, brand, query, page}
     });
   }
 
@@ -96,7 +104,7 @@ export class FilterProductScreenComponent implements OnInit, OnDestroy{
 
   onPageChange(pageNo:number){
     this.page = pageNo + 1;
-    this.refreshList();
+    this.changeUrl(this.category,this.brand, this.query, this.page);
   }
 
   onOrderChange(order:string){
@@ -112,7 +120,12 @@ export class FilterProductScreenComponent implements OnInit, OnDestroy{
   onBrandSelect(brands:string[]){
     this.brand = brands.join('-');
     this.page = 1;
-    this.changeUrl(this.category, this.brand, this.query);
+    this.changeUrl(this.category, this.brand, this.query, this.page);
+  }
+
+  onRatingChange(value:number){
+    this.rating = value.toString();
+    this.refreshList();
   }
 
   onPriceRangeChange(priceRange:{min:number; max:number}){
@@ -131,11 +144,11 @@ export class FilterProductScreenComponent implements OnInit, OnDestroy{
     if(categories.length > 0){
       const category = categories[0];
       this.page = 1;
-      this.changeUrl(category, this.brand, this.query);
+      this.changeUrl(category, this.brand, this.query, this.page);
     }else{
       const category = '';
       this.page = 1;
-      this.changeUrl(category, this.brand, this.query);
+      this.changeUrl(category, this.brand, this.query, this.page);
     }
   }
 

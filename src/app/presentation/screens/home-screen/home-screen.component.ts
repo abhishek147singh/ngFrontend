@@ -10,15 +10,29 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../../store/store.state';
 import { addToCart } from '../../../store/cart/cart.action';
 import { ProductListItemModel } from '../../../core/domain/product/product-list-item.model';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { ProductService } from '../../../service/product.service';
 import { CategoryListItemModel } from '../../../core/domain/product/category-list-item.model';
 import { RouterLink } from '@angular/router';
+import { BrandListItemModel } from '../../../core/domain/product/brand-list-item.model';
+import { AsyncPipe, NgIf } from '@angular/common';
+import { OwlSliderComponent } from '../../components/owl-slider/owl-slider.component';
 
 @Component({
   selector: 'app-home-screen',
   standalone: true,
-  imports: [ProductCardComponent, SliderComponent, SectionComponent,CategoryCardComponent,FreaturCardComponent, ImageCardSliderComponent, RouterLink],
+  imports: [
+    ProductCardComponent, 
+    SliderComponent, 
+    SectionComponent,
+    CategoryCardComponent,
+    FreaturCardComponent, 
+    ImageCardSliderComponent, 
+    RouterLink,
+    AsyncPipe,
+    NgIf,
+    OwlSliderComponent
+  ],
   templateUrl: './home-screen.component.html',
   styleUrl: './home-screen.component.scss'
 })
@@ -26,6 +40,8 @@ import { RouterLink } from '@angular/router';
 export class HomeScreenComponent implements OnInit, OnDestroy{
   productList:ProductListItemModel[] = [];
   categoryList:CategoryListItemModel[] = [];
+  brandList$:Observable<BrandListItemModel[]>|undefined;
+
   categoryListSubscription:Subscription|undefined;
   productListSubscription:Subscription|undefined;
 
@@ -52,7 +68,8 @@ export class HomeScreenComponent implements OnInit, OnDestroy{
       error:(error => {
         console.log(error);
       })
-    })
+    });
+    this.brandList$ = this.productService.getBrandList();
   }
 
   ngOnDestroy(): void {
@@ -65,5 +82,9 @@ export class HomeScreenComponent implements OnInit, OnDestroy{
     this.store.dispatch(addToCart(productDetails));
     this.toasterService.success('Product is added to the cart.');
     console.log(productDetails);
+  }
+
+  mapBrandList(brandList:BrandListItemModel[]){
+    return brandList.map(item => item.image);
   }
 }

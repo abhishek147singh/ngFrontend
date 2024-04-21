@@ -4,15 +4,16 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../../store/store.state';
 import { getTotalNoProducts } from '../../../store/cart/cart.selector';
 import { Observable, Subscription } from 'rxjs';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ProductService } from '../../../service/product.service';
 import { categoryNameListItemModel } from '../../../core/domain/product/category-name-list.model';
 import { AsyncPipe } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterLink, AsyncPipe],
+  imports: [RouterLink, AsyncPipe, FormsModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
   animations:[
@@ -41,9 +42,9 @@ export class HeaderComponent implements OnInit, OnDestroy{
   totalCartProducts:number = 0;
   cartProductSubscription:Subscription|undefined;
 
-  categoryList:Observable<categoryNameListItemModel[]>|undefined
+  categoryList:Observable<categoryNameListItemModel[]>|undefined;
 
-  constructor(private store:Store<AppState>, private productService:ProductService){}
+  constructor(private store:Store<AppState>, private productService:ProductService, private router:Router){}
 
   ngOnInit(): void {
     this.cartProductSubscription = this.store.select(getTotalNoProducts).subscribe(total => {
@@ -55,5 +56,11 @@ export class HeaderComponent implements OnInit, OnDestroy{
 
   ngOnDestroy(): void {
     this.cartProductSubscription?.unsubscribe();
+  }
+
+  onSearch(searchValue:string){
+    this.router.navigate(['/', 'shop'], {
+      queryParams:{ query: searchValue, page:1}
+    });
   }
 }

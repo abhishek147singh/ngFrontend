@@ -2,7 +2,7 @@
     <div class="slide-list" #slider [ngStyle]="{transform: 'translateX(' + ( -sliderContainerWidth + translateValue )+ 'px)' }">
         @for (slideImage of ImageList; track $index) {
             <div class="slide">
-                <img [src]="slideImage" alt="vendor" draggable="false">
+                <img [src]="assetsPath + '/' + slideImage" alt="vendor" draggable="false">
             </div>
         }
     </div>

@@ -1,0 +1,64 @@
+<div class="filter-container">
+    <h3>FILTER BY RATING</h3>
+    
+    <div class="selectedValue">
+        <div class="head" (click)="isOpen = !isOpen">
+            <div class="star-group">
+                @for (i of [1,2,3,4,5]; track $index) {
+                    @if(selectedValue <= $index){
+                        <i class="fa-regular fa-star"></i>
+                    }@else {
+                        <i class="fa-solid fa-star"></i>
+                    }    
+                }
+            </div>
+            <div class="icon">
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+        </div>
+        <div class="body" [ngClass]="{'active':isOpen}">
+            <div class="option" (click)="onSelect(0)">
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+            </div>
+            <div class="option" (click)="onSelect(1)">
+                <i class="fa-solid fa-star"></i>  
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+            </div>
+            <div class="option" (click)="onSelect(2)">
+                <i class="fa-solid fa-star"></i>  
+                <i class="fa-solid fa-star"></i>  
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+            </div>
+            <div class="option" (click)="onSelect(3)">
+                <i class="fa-solid fa-star"></i>  
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+            </div>
+            <div class="option" (click)="onSelect(4)">
+                <i class="fa-solid fa-star"></i>  
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+            </div>
+            <div class="option" (click)="onSelect(5)">
+                <i class="fa-solid fa-star"></i>  
+                <i class="fa-solid fa-star"></i> 
+                <i class="fa-solid fa-star"></i> 
+                <i class="fa-solid fa-star"></i> 
+                <i class="fa-solid fa-star"></i> 
+            </div>
+        </div>
+    </div>
+</div>

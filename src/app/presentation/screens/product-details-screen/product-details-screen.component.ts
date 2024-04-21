@@ -55,7 +55,8 @@ export class ProductDetailsScreenComponent implements OnInit, OnDestroy{
     img:'./../../../../assets/img/product-1.jpg',
     discount:0,
     brand:'',
-    countInStock:0
+    countInStock:0,
+    information:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem ducimus aliquam asperiores quibusdam labore reprehenderit, ut veniam recusandae repudiandae sapiente.',
   }
 
   cartSubscription:Subscription|undefined;

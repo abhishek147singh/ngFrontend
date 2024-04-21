@@ -9,7 +9,7 @@
                     <div class="details-container">
                         <h2>{{slide.title}}</h2>
                         <p>{{slide.description}}</p>
-                        <button class="action" (click)="searchCategory(slide.category)">Shop Now</button>
+                        <button class="action" [routerLink]="['/','shop']" >Shop Now</button>
                     </div>
                 </div>
             }

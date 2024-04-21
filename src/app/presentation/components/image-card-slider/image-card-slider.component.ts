@@ -1,15 +1,18 @@
 import { NgClass, NgStyle } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { assetsPath } from '../../../../environment';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-image-card-slider',
   standalone: true,
-  imports: [NgStyle, NgClass],
+  imports: [NgStyle, NgClass, RouterLink],
   templateUrl: './image-card-slider.component.html',
   styleUrl: './image-card-slider.component.scss'
 })
 export class ImageCardSliderComponent implements OnInit, AfterViewInit,OnDestroy {
   translateValue:number = 0;
+  assetsPath = assetsPath;
 
   isDown = false;
   startX = 0;

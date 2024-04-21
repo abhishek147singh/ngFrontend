@@ -1,0 +1,11 @@
+<owl-carousel-o [options]="customOptions">
+    @for (slide of slides; track $index) {
+        <ng-template carouselSlide>
+            <div class="slide" [title]="slide.name">
+                <a [routerLink]="['/',  'shop']" [queryParams]="{'brand':slide._id, 'page':1}">
+                    <img style="max-width: 240px !important;" [src]="assetsPath + '/' + slide.image" [alt]="slide.name">
+                </a>
+            </div>
+        </ng-template>
+    }
+  </owl-carousel-o>
