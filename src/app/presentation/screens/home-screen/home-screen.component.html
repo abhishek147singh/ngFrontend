@@ -19,7 +19,7 @@
 
 <app-section title="Featured products">
     <div class="list">
-        @for (product of productList; track product._id) {
+        @for (product of featuredProudcts; track product._id) {
             <app-product-card [productDetails]="product" (addToCartEmt)="addToCart($event)"></app-product-card>
         }
     </div>
@@ -27,7 +27,7 @@
 
 <app-section title="Recent products">
     <div class="list">
-        @for (product of productList; track product._id) {
+        @for (product of recentlyAddedProudcts; track product._id) {
             <app-product-card [productDetails]="product" (addToCartEmt)="addToCart($event)"></app-product-card>
         }
     </div>

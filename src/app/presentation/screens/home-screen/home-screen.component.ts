@@ -39,6 +39,13 @@ import { OwlSliderComponent } from '../../components/owl-slider/owl-slider.compo
 
 export class HomeScreenComponent implements OnInit, OnDestroy{
   productList:ProductListItemModel[] = [];
+  
+  recentlyAddedProudcts:ProductListItemModel[] = [];
+  recentlyAddedProductsSubscription:Subscription|undefined;
+
+  featuredProudcts:ProductListItemModel[] = [];
+  featuredProudctsSubscription:Subscription|undefined;
+
   categoryList:CategoryListItemModel[] = [];
   brandList$:Observable<BrandListItemModel[]>|undefined;
 
@@ -69,6 +76,25 @@ export class HomeScreenComponent implements OnInit, OnDestroy{
         console.log(error);
       })
     });
+
+    this.recentlyAddedProductsSubscription = this.productService.getRecentlyAddedProductList().subscribe({
+      next:(response => {
+        this.recentlyAddedProudcts = response;
+      }),
+      error:(error => {
+        console.log(error);
+      })
+    });
+
+    this.featuredProudctsSubscription = this.productService.getFeaturedProducts().subscribe({
+      next:(response => {
+        this.featuredProudcts = response;
+      }),
+      error:(error => {
+        console.log(error);
+      })
+    });
+
     this.brandList$ = this.productService.getBrandList();
   }
 

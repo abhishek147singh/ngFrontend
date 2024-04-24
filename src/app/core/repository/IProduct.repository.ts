@@ -13,6 +13,10 @@ export abstract class IProductRepository{
 
     abstract getRecentlyAddedProductList():Observable<ProductListItemModel[]>;
 
+    abstract getFeaturedProducts():Observable<ProductListItemModel[]>;
+
+    abstract getSimilarProducts(productId:string, query:string, category:string):Observable<ProductListItemModel[]>;
+
     abstract getfilterProductList(page:number, query:string, category:string, price:string, rating:string,order:string,brand:string):Observable<ProductFilterProductListItemModel>;
 
     abstract getProductDetails(id:string):Observable<ProductModel>;

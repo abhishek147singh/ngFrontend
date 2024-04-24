@@ -47,16 +47,17 @@ export class ProductDetailsScreenComponent implements OnInit, OnDestroy{
 
   productDetails:ProductModel = {
     _id:'',
-    name:'Product Name',
-    description:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem ducimus aliquam asperiores quibusdam labore reprehenderit, ut veniam recusandae repudiandae sapiente.',
-    price:100,
-    rating:4.5,
-    noReviews:11,
-    img:'./../../../../assets/img/product-1.jpg',
+    name:'',
+    description:'',
+    price:0,
+    rating:0,
+    noReviews:0,
+    img:'',
     discount:0,
     brand:'',
     countInStock:0,
-    information:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem ducimus aliquam asperiores quibusdam labore reprehenderit, ut veniam recusandae repudiandae sapiente.',
+    information:'',
+    category:''
   }
 
   cartSubscription:Subscription|undefined;
@@ -104,6 +105,7 @@ export class ProductDetailsScreenComponent implements OnInit, OnDestroy{
         this.productService.getProductDetails(productId).pipe(take(1)).subscribe({
           next:(response => {
             this.productDetails = response;
+            this.similarProductList = this.productService.getSimilarProducts(response._id, response.name, response.category);
           }),
           error:(error => {
             console.log(error);
@@ -111,7 +113,6 @@ export class ProductDetailsScreenComponent implements OnInit, OnDestroy{
         })
 
         this.reviewList = this.productService.getProductReviewList(productId);
-        this.similarProductList = this.productService.getProductList();
       }
     });
   }

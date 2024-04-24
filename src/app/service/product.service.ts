@@ -29,6 +29,14 @@ export class ProductService extends IProductService{
         return this.productRepository.getRecentlyAddedProductList();
     }
 
+    override getFeaturedProducts(): Observable<ProductListItemModel[]> {
+        return this.productRepository.getFeaturedProducts();
+    }
+
+    override getSimilarProducts(productId:string,query: string, category: string): Observable<ProductListItemModel[]> {
+        return this.productRepository.getSimilarProducts(productId , query, category);
+    }
+
     override getfilterProductList(page: number, query: string, category: string, price: string, rating: string, order: string, brand:string): Observable<ProductFilterProductListItemModel> {
         return this.productRepository.getfilterProductList(page, query, category, price, rating, order, brand);
     }

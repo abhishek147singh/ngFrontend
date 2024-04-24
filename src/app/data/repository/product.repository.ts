@@ -65,6 +65,34 @@ export class ProudctRepository extends IProductRepository{
         );
     }
 
+    override getFeaturedProducts(): Observable<ProductListItemModel[]> {
+        const url = `${baseUrl}/api/featured-products/list`;
+
+        return this.http.get<ProductListEntity> (url).pipe(
+            map(response => {
+                if (response.status) {
+                    return response.data;
+                }
+
+                throw new Error(response.message);
+            })
+        );
+    }
+
+    override getSimilarProducts(productId:string, query: string, category: string): Observable<ProductListItemModel[]> {
+        const url = `${baseUrl}/api/product/similarProducts?query=${query}&category=${category}&product=${productId}`;
+
+        return this.http.get<ProductListEntity>(url).pipe(
+            map(response => {
+                if (response.status) {
+                    return response.data;
+                }
+
+                throw new Error(response.message);
+            })
+        );
+    }
+
     override getfilterProductList(page: number, query: string, category: string, price: string, rating: string, order: string,brand:string):Observable<ProductFilterProductListItemModel>{
         const url = `${baseUrl}/api/product/search?page=${page}&query=${query}&category=${category}&price=${price}&rating=${rating}&order=${order}&brand=${brand}`;
 

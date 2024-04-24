@@ -11,7 +11,11 @@ import { BrandListItemModel } from "../domain/product/brand-list-item.model";
 export abstract class IProductService{
     abstract getProductList():Observable<ProductListItemModel[]>;
 
+    abstract getFeaturedProducts():Observable<ProductListItemModel[]>;
+
     abstract getRecentlyAddedProductList():Observable<ProductListItemModel[]>;
+
+    abstract getSimilarProducts(productId:string,query:string, category:string):Observable<ProductListItemModel[]>;
 
     abstract getfilterProductList(page:number, query:string, category:string, price:string, rating:string,order:string,brand:string):Observable<ProductFilterProductListItemModel>;
 
