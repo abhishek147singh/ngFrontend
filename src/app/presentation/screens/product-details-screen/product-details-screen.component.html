@@ -1,7 +1,7 @@
 <app-breadcrumb [urlArrays]="[{title:'home', url:'/'}]" [activeUrlTitle]="productDetails.name"></app-breadcrumb>
 <div class="product-details-container">
     <div class="product-image-container">
-        <img [src]="assetsPath + '/' + productDetails.img" alt="Product Image">
+        <img [src]="productDetails.img" alt="Product Image">
     </div>
     <div class="product-text-details-container">
         <h1>{{productDetails.name}}</h1>

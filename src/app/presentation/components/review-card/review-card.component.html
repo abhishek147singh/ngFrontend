@@ -1,7 +1,7 @@
 <div class="review-card">
     <div class="profile-image-container">
         @if (reviewModel.userProfile) {
-            <img [src]="assetsPath + '/' + reviewModel.userProfile" alt="User Image">
+            <img [src]="reviewModel.userProfile" alt="User Image">
         }@else {
             <span>{{getFirstLetter(reviewModel.userName)}}</span>
         }
