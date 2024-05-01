@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from "@ngrx/store";
 import { AuthState, initialState } from "./auth.state";
-import { login, loginError, loginSuccess, logout } from "./auth.action";
+import { login, loginError, loginSuccess, logout, updateProfile } from "./auth.action";
 
 
 const _authReducer = createReducer(
@@ -15,14 +15,19 @@ const _authReducer = createReducer(
         localStorage.setItem('auth', JSON.stringify(newState));
         return newState;
     }),
+
+    on(updateProfile , (state , acion) => {
+        return {...state , loading: true};
+    }),
     
     on(loginError, (state , action) => {
         return {...state, loading:false, error: action.message};
     }),
 
     on(logout , (state , acion) => {
+        localStorage.removeItem('auth');
         return initialState;
-    })
+    }),
 );
 
 

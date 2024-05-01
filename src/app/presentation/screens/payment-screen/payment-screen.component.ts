@@ -9,7 +9,6 @@ import { getAuth } from '../../../store/auth/auth.selector';
 import { getCart } from '../../../store/cart/cart.selector';
 import { cartModel } from '../../../store/cart/cart.state';
 import { AppState } from '../../../store/store.state';
-import { getShippingAdd } from '../../../store/shipping-address/shipping-address.selector';
 import { ShippingAddressComponent } from '../../components/shipping-address/shipping-address.component';
 
 @Component({

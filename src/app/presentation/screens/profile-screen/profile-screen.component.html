@@ -1,0 +1,56 @@
+<div class="register-container">
+    <div class="card">
+        <h1>Profile Details</h1>
+
+        <div class="form-container">
+            <form [formGroup]="profileForm" (ngSubmit)="update()">
+                <div class="input-box">
+                    <div class="icon">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="input">
+                        <input type="text" name="name" formControlName="name" placeholder="Name">
+                    </div>
+                </div>
+    
+    
+                <div class="input-box">
+                    <div class="icon">
+                        <i class="fa-solid fa-envelope"></i>
+                    </div>
+                    <div class="input">
+                        <input type="text" name="email" formControlName="email" placeholder="Email">
+                    </div>
+                </div>
+    
+                <div class="input-box">
+                    <div class="icon">
+                        <i class="fa-solid fa-lock"></i>
+                    </div>
+                    <div class="input">
+                        <input type="password" name="password" formControlName="password" placeholder="Password">
+                    </div>
+                </div>
+    
+                <div class="input-box">
+                    <div class="icon">
+                        <i class="fa-solid fa-lock"></i>
+                    </div>
+                    <div class="input">
+                        <input type="password" name="password" formControlName="confirmPassword" placeholder="Confirm Password">
+                    </div>
+                </div>
+    
+                @if (errorMsg) {
+                    <div class="error-message">
+                        {{errorMsg}}
+                    </div>
+                }
+    
+                <div class="actions">
+                    <button type="submit" [disabled]="loading">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

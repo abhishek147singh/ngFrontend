@@ -9,6 +9,8 @@ import { ProductService } from '../../../service/product.service';
 import { categoryNameListItemModel } from '../../../core/domain/product/category-name-list.model';
 import { AsyncPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { getAuth } from '../../../store/auth/auth.selector';
+import { logout } from '../../../store/auth/auth.action';
 
 @Component({
   selector: 'app-header',
@@ -39,10 +41,18 @@ export class HeaderComponent implements OnInit, OnDestroy{
   isCategoryDropDownActive:boolean = false;
   isHeader2Opened:boolean = false;
 
+  isAccountMenuOpened:boolean = false;
+
   totalCartProducts:number = 0;
   cartProductSubscription:Subscription|undefined;
 
+  authDataSubscription:Subscription|undefined;
+
   categoryList:Observable<categoryNameListItemModel[]>|undefined;
+  isUserLogined:boolean = false;
+  userName:string = '';
+
+
 
   constructor(private store:Store<AppState>, private productService:ProductService, private router:Router){}
 
@@ -52,6 +62,13 @@ export class HeaderComponent implements OnInit, OnDestroy{
     })
 
     this.categoryList = this.productService.getCategoryNameList();
+
+    this.authDataSubscription = this.store.select(getAuth).subscribe(authState => {
+      this.userName = authState.name;
+      if(authState.token){
+        this.isUserLogined = true;
+      }
+    });
   }
 
   ngOnDestroy(): void {
@@ -62,5 +79,10 @@ export class HeaderComponent implements OnInit, OnDestroy{
     this.router.navigate(['/', 'shop'], {
       queryParams:{ query: searchValue, page:1}
     });
+  }
+
+  logout(){
+    this.isAccountMenuOpened = false;
+    this.store.dispatch(logout());
   }
 }

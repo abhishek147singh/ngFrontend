@@ -21,7 +21,7 @@
                                 <a [routerLink]="['/', 'product', product.productId]">{{product.Name}}</a>
                             </div>
                             <div class="price">
-                                ${{getProductPrice(product.price , product.count)}}
+                                ₹{{getProductPrice(product.price , product.count)}}
                             </div>
                         </div>
                     </div>
@@ -48,18 +48,18 @@
             <div class="card">
                 <div class="row">
                     <div class="title">Subtotal</div>
-                    <div class="value">${{getProductTotal(cartProducts)}}</div>
+                    <div class="value">₹{{getProductTotal(cartProducts)}}</div>
                 </div>
                 <div class="row">
                     <div class="title">Shipping</div>
-                    <div class="value">${{shippingCharge}}</div>
+                    <div class="value">₹{{shippingCharge}}</div>
                 </div>
 
                 <div class="divider"></div>
 
                 <div class="row main">
                     <div class="title">Total</div>
-                    <div class="value">${{getTotal(cartProducts)}}</div>
+                    <div class="value">₹{{getTotal(cartProducts)}}</div>
                 </div>
 
                 <button class="procced-btn">Procced To Payment</button>

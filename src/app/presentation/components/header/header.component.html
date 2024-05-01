@@ -1,7 +1,7 @@
 <header>
     <div class="upper-header">
         <div class="logo-container">
-            <h1 routerLink="/">LOGO</h1>
+            <h1 routerLink="/">NAGA JI</h1>
         </div>
         <div class="search-container">
             <div class="search-box">
@@ -39,6 +39,21 @@
         </div>
         <div class="freatures-container">
             <div class="cart-container" routerLink="cart"><i class="fa-solid fa-cart-shopping"></i> <span class="cart-no">{{totalCartProducts}}</span></div>
+            <div class="account-menu"> 
+                <div class="header">
+                    <button (click)="isAccountMenuOpened = !isAccountMenuOpened"><i class="fa-regular fa-user"></i></button>
+                </div>
+                <div class="body" [class.active]="isAccountMenuOpened">
+                    @if (isUserLogined) {
+                        <button>Hi! {{userName}}</button>
+                        <button routerLink="/profile">Profile</button>
+                        <button>Order History</button>
+                        <button (click)="logout()">Log out</button>
+                    }@else {
+                        <button [routerLink]="['/', 'login']">Sign In</button>
+                    }
+                </div>
+            </div>
         </div>
     </div>
 
@@ -53,6 +68,21 @@
                 </button>
             </div>
             <div class="cart-container" routerLink="cart"><i class="fa-solid fa-cart-shopping"></i> <span class="cart-no">{{totalCartProducts}}</span></div>
+            <div class="account-menu"> 
+                <div class="header">
+                    <button (click)="isAccountMenuOpened = !isAccountMenuOpened"><i class="fa-regular fa-user"></i></button>
+                </div>
+                <div class="body" [class.active]="isAccountMenuOpened">
+                    @if (isUserLogined) {
+                        <button>Hi! {{userName}}</button>
+                        <button routerLink="/profile">Profile</button>
+                        <button>Order History</button>
+                        <button (click)="logout()">Log out</button>
+                    }@else {
+                        <button [routerLink]="['/', 'login']">Sign In</button>
+                    }
+                </div>
+            </div>
             <div class="bars">
                 <button (click)="isHeader2Opened = !isHeader2Opened">
                     <i class="fa-solid fa-bars"></i>

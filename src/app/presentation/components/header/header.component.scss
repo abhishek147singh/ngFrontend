@@ -47,7 +47,7 @@ header{
         .freatures-container{
             .cart-container{
                 height: 100%;
-                padding-right: 12px;
+                padding-right: 4px;
                 display: flex;
                 align-items: center;
                 cursor: pointer;
@@ -81,6 +81,62 @@ header{
                 background-color: transparent;
                 padding: 0px 12px;
                 color: $yellow;
+            }
+        }
+    }
+}
+
+.account-menu{
+    height: 100%;
+    position: relative;
+
+    .header{
+        width: 50px;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        button{
+            width: 27px;
+            height: 27px;
+            color: $yellow;
+            border: 1px solid $yellow;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            font-size: 12px;
+            background-color: transparent;
+            cursor: pointer;
+        }
+    }
+
+    .body{
+        display: none;
+        position: absolute;
+        right: 0;
+        width: 120px;
+        background-color: #fff;
+        z-index: 2;
+
+        &.active{
+            display: block;
+        }
+
+        button{
+            display: block;
+            width: 100%;
+            padding: 8px 10px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: transparent;
+            outline: none;
+            border: none;
+            color: #666;
+            text-align: left;
+
+            &:hover{
+                background-color: #efeeef;
             }
         }
     }

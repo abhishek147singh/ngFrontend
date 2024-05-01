@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { switchMap, map, of, catchError } from "rxjs";
 import { Router } from "@angular/router";
 import { AuthService } from "../../service/auth.service";
-import { login, loginSuccess, loginError, logout, dummy, register } from "./auth.action";
+import { login, loginSuccess, loginError, logout, dummy, register, updateProfile } from "./auth.action";
 
 @Injectable()
 
@@ -39,6 +39,23 @@ export class AuthEffect {
                 return this.authService.register(action.username, action.email , action.pass).pipe(
                     map((data) =>{ 
                         this.router.navigate([action.redirectionUrl]);
+                       return loginSuccess({ data });
+                    }),
+                    catchError((err) => {
+                        console.error(err);
+                       return of(loginError({message :err.message}));
+                    })
+                )
+            })
+        )
+    );
+
+    updateProfile$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(updateProfile),
+            switchMap((action) => {
+                return this.authService.updateProfile(action.username, action.email , action.pass).pipe(
+                    map((data) =>{ 
                        return loginSuccess({ data });
                     }),
                     catchError((err) => {

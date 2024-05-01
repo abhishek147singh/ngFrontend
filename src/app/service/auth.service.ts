@@ -21,4 +21,8 @@ export class AuthService extends IAuthService{
     override register(Name: string, Email: string, Password: string): Observable<authModel> {
         return this.authRepository.register(Name, Email, Password);
     }
+
+    override updateProfile(Name: string, Email: string, Password: string): Observable<authModel> {
+        return this.authRepository.updateProfile(Name, Email, Password);
+    }
 }

@@ -21,8 +21,8 @@
     <div class="text-details-container">
         <h4 class="title" [routerLink]="['/','product', productDetails._id]">{{productDetails.name}}</h4>
         <div class="price">
-            <div class="right">${{productDetails.price}}</div>
-            <div class="wrong">${{getActualPrice(productDetails.price, productDetails.discount)}}</div>
+            <div class="right">₹{{productDetails.price}}</div>
+            <div class="wrong">₹{{getActualPrice(productDetails.price, productDetails.discount)}}</div>
         </div>
         <div class="rating">
             <app-product-rating [rating]="productDetails.rating" [noReviews]="productDetails.noReviews"></app-product-rating>
