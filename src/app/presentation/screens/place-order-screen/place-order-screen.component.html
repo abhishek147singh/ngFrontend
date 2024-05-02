@@ -1,0 +1,69 @@
+<div class="section-container">
+    <div class="form-section">
+        <app-section title="ORDER TOTAL">
+            <div class="card">
+                <div class="row">
+                    <div class="title">Products</div>
+                    <div class="value">
+                       <a [routerLink]="['/', 'cart']">Edit</a> 
+                    </div>
+                </div>
+    
+                <!-- Product list -->
+                @for (product of cartProducts; track product.productId) {
+                <div class="row product">
+                    <div class="product">
+                        <div class="image-box">
+                            <img [src]="product.Image" alt="Product Image">
+                        </div>
+                        <div class="text-details">
+                            <div class="other-details">
+                                <a [routerLink]="['/', 'product', product.productId]">{{product.Name}}</a>
+                            </div>
+                            <div class="price">
+                                ₹{{getProductPrice(product.price , product.count)}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                }
+            </div>
+
+            <div class="card" style="margin-top: 20px;">
+                <div class="row">
+                    <div class="title">Shipping Details</div>
+                    <div class="value">
+                       <a [routerLink]="['/', 'shipping']">Edit</a> 
+                    </div>
+                </div>
+                <div>
+                    <app-shipping-address [shippingState]="shippingState"></app-shipping-address>
+                </div>
+            </div>
+        </app-section>
+    </div>
+
+    <div class="action-section">
+        <app-section title="PAYMENT">
+            <div class="card">
+                <div class="row">
+                    <div class="title">Subtotal</div>
+                    <div class="value">₹{{getProductTotal(cartProducts)}}</div>
+                </div>
+                <div class="row">
+                    <div class="title">Shipping</div>
+                    <div class="value">₹{{shippingCharge}}</div>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="row main">
+                    <div class="title">Total</div>
+                    <div class="value">₹{{getTotal(cartProducts)}}</div>
+                </div>
+
+                <button class="procced-btn" (click)="placeOrder()">Place Order</button>
+            </div>
+        </app-section>
+    </div>
+</div>

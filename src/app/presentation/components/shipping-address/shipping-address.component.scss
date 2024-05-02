@@ -25,13 +25,14 @@ $yellow:#FFD333;
         grid-template-columns: 150px 1fr;
         .label-box{
             font-size: 18px;
-            color: $light-font-color;
             margin-bottom: 5px;
+            color: #333;
         }
 
         .input-box{
             width: 100%;
             text-align: end;
+            color: $light-font-color;
         }
 
     }

@@ -47,6 +47,6 @@ export class ShippingScreenComponent implements OnInit, OnDestroy {
   }
 
   afterFormSubmit(){
-    this.router.navigate(['/', 'payment']);
+    this.router.navigate(['/', 'place-order']);
   }
 }

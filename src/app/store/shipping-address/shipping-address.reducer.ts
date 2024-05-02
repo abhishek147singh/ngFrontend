@@ -7,7 +7,6 @@ export interface shippingAddressStateModel{
     email: string;
     mobile: string;
     address1: string;
-    address2: string;
     city: string;
     country: string;
     state: string;
@@ -28,7 +27,6 @@ const getInitialState = ():shippingAddressStateModel => {
         email: '',
         mobile: '',
         address1: '',
-        address2: '',
         city: '',
         country: '',
         state: '',

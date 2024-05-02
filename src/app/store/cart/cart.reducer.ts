@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from "@ngrx/store";
 import { cartModel, cartModelState, initialState } from "./cart.state";
-import { addToCart, decrementProductCount, incrementProductCount, removeToCart } from "./cart.action";
+import { addToCart, clearCart, decrementProductCount, incrementProductCount, removeToCart } from "./cart.action";
 
 const saveCartToLocalStorage = (state:cartModelState) => {
     if(typeof localStorage !== 'undefined'){
@@ -34,6 +34,12 @@ const _cartReducer = createReducer(
         const items = state.items.filter(product => product.productId !== action.productId);
 
         const newState = {items, totalItems: state.totalItems - 1};
+        saveCartToLocalStorage(newState);
+        return newState;
+    }),
+
+    on(clearCart, (state, action) => {
+        const newState = {items:[], totalItems:0}; 
         saveCartToLocalStorage(newState);
         return newState;
     }),

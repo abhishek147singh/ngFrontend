@@ -1,15 +1,18 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { SectionComponent } from '../../components/section/section.component';
 import { StepperComponent } from '../../components/stepper/stepper.component';
 import { Store } from '@ngrx/store';
-import { Subscription } from 'rxjs';
+import { Subscription, take } from 'rxjs';
 import { assetsPath } from '../../../../environment';
 import { getAuth } from '../../../store/auth/auth.selector';
 import { getCart } from '../../../store/cart/cart.selector';
 import { cartModel } from '../../../store/cart/cart.state';
 import { AppState } from '../../../store/store.state';
 import { ShippingAddressComponent } from '../../components/shipping-address/shipping-address.component';
+import { OrderService } from '../../../service/order.service';
+import { shippingAddressStateModel } from '../../../store/shipping-address/shipping-address.reducer';
+import { OrderModel } from '../../../core/domain/order/order.model';
 
 @Component({
   selector: 'app-payment-screen',
@@ -38,8 +41,17 @@ export class PaymentScreenComponent implements OnInit, OnDestroy {
 
   storeSubscription:Subscription|undefined;
   shipingStoreSubscription:Subscription|undefined;
+  shippingState: shippingAddressStateModel|undefined;
+  routeSubscription:Subscription|undefined;
 
-  constructor(private store:Store<AppState>, private router:Router){}
+  OrderDetials:OrderModel|undefined;
+
+  constructor(
+    private store:Store<AppState>, 
+    private router:Router,
+    private orderService:OrderService,
+    private route: ActivatedRoute
+  ){}
 
   ngOnInit(): void {
     this.storeSubscription = this.store.select(getAuth).subscribe(authState => {
@@ -50,14 +62,52 @@ export class PaymentScreenComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.cartSubscription = this.store.select(getCart).subscribe((cartState => {
-      this.cartProducts = cartState.items; 
-    }));
+    this.routeSubscription = this.route.params.subscribe(routeState => {
+      const productId = routeState['id'];
+      if(productId){
+        this.getOrderDetails(productId);
+      }
+    });
+  }
+
+  getOrderDetails(Id:string){
+    this.orderService.getOrderDetails(Id).pipe(take(1)).subscribe({
+      next:(response => {
+        this.OrderDetials = response;
+
+        this.cartProducts = this.OrderDetials.orderItems.map(product => {
+          return {
+            Name: product.name,
+            count: product.quantity,
+            Image: product.img,
+            price: product.price,
+            productId: product.product
+          }
+        });
+
+        const shipingAddress = this.OrderDetials.shippingAddress;
+
+        this.shippingState = {
+          fName: shipingAddress.fullName.split(' ')[0],
+          lName: shipingAddress.fullName.split(' ')[1],
+          address1: shipingAddress.address,
+          city: shipingAddress.city,
+          country: shipingAddress.country,
+          zip: shipingAddress.zipcode,
+          state: shipingAddress.state,
+          email: shipingAddress.email,
+          mobile: shipingAddress.mobile
+        }
+      }),
+      error:(error => {
+        console.log(error);
+      })
+    })
   }
 
   ngOnDestroy(): void {
     this.storeSubscription?.unsubscribe();
-    this.cartSubscription?.unsubscribe();
+    this.routeSubscription?.unsubscribe();
   }
  
   getProductTotal(products:cartModel[]){

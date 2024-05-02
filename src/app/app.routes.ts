@@ -9,6 +9,7 @@ import { LoginScreenComponent } from './presentation/screens/login-screen/login-
 import { RegisterScreenComponent } from './presentation/screens/register-screen/register-screen.component';
 import { PaymentScreenComponent } from './presentation/screens/payment-screen/payment-screen.component';
 import { ProfileScreenComponent } from './presentation/screens/profile-screen/profile-screen.component';
+import { PlaceOrderScreenComponent } from './presentation/screens/place-order-screen/place-order-screen.component';
 
 export const routes: Routes = [
     {path:'', component:HomeScreenComponent},
@@ -19,6 +20,7 @@ export const routes: Routes = [
     {path:'contact-us', component:ContactUsScreenComponent},
     {path:'shop', component:FilterProductScreenComponent},
     {path:'shipping', component:ShippingScreenComponent},
-    {path:'payment', component:PaymentScreenComponent},
+    {path:'payment/:id', component:PaymentScreenComponent},
+    {path:'place-order', component:PlaceOrderScreenComponent},
     {path:'profile', component:ProfileScreenComponent},
 ];

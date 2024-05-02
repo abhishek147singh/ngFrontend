@@ -2,9 +2,11 @@
 <app-back-to-top></app-back-to-top>
 <div class="container">
     <ng-container *ngIf="(productList|async) as Products">
-        <div class="filter-header">
+        <div class="filter-header" [class.active]="isFilterSidebarOpened">
             <h2>Filters</h2>
-            
+            <button class="close" (click)="isFilterSidebarOpened = false">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
             <div class="filter-list">
                 <div class="filter">
                     <app-price-filter (onSubmitEmt)="onPriceRangeChange($event)" [min]="Products.PriceRange.minPrice" [max]="Products.PriceRange.maxPrice"></app-price-filter>
@@ -22,6 +24,7 @@
         </div>
         <div class="products-container">
             <div class="header">
+                <button (click)="isFilterSidebarOpened = true" class="filter-btn">Filters &nbsp;<i class="fa-solid fa-chevron-right"></i> </button>
                 <app-toggle-menu [initialValue]="order" (onChange)="onOrderChange($event)" [optionList]="[{title:'Lowest', value:'lowest'},{title:'Highest', value:'highest'},{title:'Newest', value:'newest'}]"></app-toggle-menu>
             </div>
             

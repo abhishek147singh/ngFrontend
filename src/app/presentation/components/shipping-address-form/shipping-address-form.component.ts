@@ -22,7 +22,6 @@ export class ShippingAddressFormComponent implements OnInit, OnDestroy {
     email: new FormControl('', [Validators.required]),
     mobile: new FormControl('', [Validators.required]),
     address1: new FormControl('', [Validators.required]),
-    address2: new FormControl('', [Validators.required]),
     city: new FormControl('', [Validators.required]),
     country: new FormControl('', [Validators.required]),
     state: new FormControl('', [Validators.required]),
@@ -43,7 +42,6 @@ export class ShippingAddressFormComponent implements OnInit, OnDestroy {
         email: shippingState.email,
         mobile: shippingState.mobile,
         address1: shippingState.address1,
-        address2: shippingState.address2,
         city: shippingState.city,
         country: shippingState.country,
         state: shippingState.state,
@@ -64,7 +62,6 @@ export class ShippingAddressFormComponent implements OnInit, OnDestroy {
     const email = this.shippingForm.get('email')?.value;
     const mobile = this.shippingForm.get('mobile')?.value;
     const address1 = this.shippingForm.get('address1')?.value;
-    const address2 = this.shippingForm.get('address2')?.value;
     const city = this.shippingForm.get('city')?.value;
     const country = this.shippingForm.get('country')?.value;
     const state = this.shippingForm.get('state')?.value;
@@ -76,7 +73,6 @@ export class ShippingAddressFormComponent implements OnInit, OnDestroy {
       email,
       mobile,
       address1,
-      address2,
       city,
       country,
       state,

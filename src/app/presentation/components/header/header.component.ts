@@ -64,7 +64,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
     this.categoryList = this.productService.getCategoryNameList();
 
     this.authDataSubscription = this.store.select(getAuth).subscribe(authState => {
-      this.userName = authState.name;
+      this.userName = this.getFirstWord(authState.name);
       if(authState.token){
         this.isUserLogined = true;
       }
@@ -73,6 +73,17 @@ export class HeaderComponent implements OnInit, OnDestroy{
 
   ngOnDestroy(): void {
     this.cartProductSubscription?.unsubscribe();
+  }
+
+
+  getFirstWord(str:string){
+    const trimString = str.trim();
+    if(trimString){
+      const words = trimString.split(' ');
+      return words[0];
+    }
+
+    return '';
   }
 
   onSearch(searchValue:string){

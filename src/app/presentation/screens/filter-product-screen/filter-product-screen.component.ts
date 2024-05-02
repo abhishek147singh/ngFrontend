@@ -34,6 +34,8 @@ import { RatingFilterComponent } from '../../components/rating-filter/rating-fil
 
 export class FilterProductScreenComponent implements OnInit, OnDestroy{
   routeSubscription:Subscription|undefined;
+  isFilterSidebarOpened:boolean = false;
+
   page:number = 1;
   query:string = 'all'; 
   category:string = 'all';
