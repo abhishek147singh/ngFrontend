@@ -10,6 +10,7 @@ import { RegisterScreenComponent } from './presentation/screens/register-screen/
 import { PaymentScreenComponent } from './presentation/screens/payment-screen/payment-screen.component';
 import { ProfileScreenComponent } from './presentation/screens/profile-screen/profile-screen.component';
 import { PlaceOrderScreenComponent } from './presentation/screens/place-order-screen/place-order-screen.component';
+import { OrderHistoryScreenComponent } from './presentation/screens/order-history-screen/order-history-screen.component';
 
 export const routes: Routes = [
     {path:'', component:HomeScreenComponent},
@@ -22,5 +23,6 @@ export const routes: Routes = [
     {path:'shipping', component:ShippingScreenComponent},
     {path:'payment/:id', component:PaymentScreenComponent},
     {path:'place-order', component:PlaceOrderScreenComponent},
+    {path:'order-history', component:OrderHistoryScreenComponent},
     {path:'profile', component:ProfileScreenComponent},
 ];

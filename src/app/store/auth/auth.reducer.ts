@@ -26,7 +26,13 @@ const _authReducer = createReducer(
 
     on(logout , (state , acion) => {
         localStorage.removeItem('auth');
-        return initialState;
+        return {
+            loading:false,
+            error:'',
+            name:'',
+            email:'',
+            token:''
+        };
     }),
 );
 

@@ -67,6 +67,8 @@ export class HeaderComponent implements OnInit, OnDestroy{
       this.userName = this.getFirstWord(authState.name);
       if(authState.token){
         this.isUserLogined = true;
+      }else{
+        this.isUserLogined = false;
       }
     });
   }

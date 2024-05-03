@@ -20,7 +20,6 @@ function getInitialState(){
         error:'',
         name:'',
         email:'',
-        token:'',
-        isAdmin:false
+        token:''
     };
 }

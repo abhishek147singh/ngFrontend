@@ -1,0 +1,30 @@
+<div class="order-container">
+    <h1>Order history</h1>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Order Id</th>
+                    <th>Date</th>
+                    <th>Total</th>
+                    <th>Paid</th>
+                    <th>Delivered</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (order of orderList$ | async; track order._id) {
+                    <tr>
+                        <td>{{order._id}}</td>
+                        <td>{{order.createdAt | date}}</td>
+                        <td>{{order.totalPrice}}</td>
+                        <td>{{ order.isPaid ? 'Yes' : 'No' }}</td>
+                        <td>{{ order.isPaid ? 'Yes' : 'No' }}</td>
+                        <td><button class="details-btn" (click)="getOrderDetails(order._id)">Details</button></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

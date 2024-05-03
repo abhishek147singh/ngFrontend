@@ -10,6 +10,8 @@ import { OrderSubmitionModel } from "../../core/domain/order/order-submition.mod
 import { ResponseModel } from "../../core/domain/response.model";
 import { OrderModel } from "../../core/domain/order/order.model";
 import { OrderEntity } from "../../entity/order/order.entity";
+import { OrderListItem } from "../../core/domain/order/order-list-item.model";
+import { OrderListEntity } from "../../entity/order/oder-list.entity";
 
 @Injectable({
     providedIn: 'root'
@@ -59,4 +61,20 @@ export class OrderRepository extends IOrderRepository{
          );
     }
 
+
+    override getOrderList(): Observable<OrderListItem[]> {
+        const url = `${baseUrl}/api/order/mine`;
+
+        return this.http.get<OrderListEntity> (url,{
+            headers:{'authorization': this.token}
+        }).pipe(
+             map((response) => {
+                 if (response.status) {
+                     return response.data;
+                 }
+ 
+                 throw new Error(response.message);
+             })
+         );
+    }
 }

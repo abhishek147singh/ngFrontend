@@ -4,6 +4,7 @@ import { OrderRepository } from "../data/repository/order.repository";
 import { Observable } from "rxjs";
 import { OrderSubmitionModel } from "../core/domain/order/order-submition.model";
 import { OrderModel } from "../core/domain/order/order.model";
+import { OrderListItem } from "../core/domain/order/order-list-item.model";
 
 @Injectable({
     providedIn:'root'
@@ -21,5 +22,9 @@ export class OrderService extends IOrderService{
 
     override getOrderDetails(id: string): Observable<OrderModel> {
         return this.orderRepository.getOrderDetails(id);
+    }
+
+    override getOrderList(): Observable<OrderListItem[]> {
+        return this.orderRepository.getOrderList();
     }
 }

@@ -46,11 +46,11 @@
                 <div class="body" [class.active]="isAccountMenuOpened">
                     @if (isUserLogined) {
                         <button>Hi! {{userName}}</button>
-                        <button routerLink="/profile">Profile</button>
-                        <button>Order History</button>
+                        <button (click)="isAccountMenuOpened = false" routerLink="/profile">Profile</button>
+                        <button (click)="isAccountMenuOpened = false" routerLink="/order-history">Order History</button>
                         <button (click)="logout()">Log out</button>
                     }@else {
-                        <button [routerLink]="['/', 'login']">Sign In</button>
+                        <button (click)="isAccountMenuOpened = false" [routerLink]="['/', 'login']">Login</button>
                     }
                 </div>
             </div>
@@ -75,11 +75,11 @@
                 <div class="body" [class.active]="isAccountMenuOpened">
                     @if (isUserLogined) {
                         <button>Hi! {{userName}}</button>
-                        <button routerLink="/profile">Profile</button>
-                        <button>Order History</button>
+                        <button (click)="isAccountMenuOpened = false" routerLink="/profile">Profile</button>
+                        <button (click)="isAccountMenuOpened = false" routerLink="/order-history">Order History</button>
                         <button (click)="logout()">Log out</button>
                     }@else {
-                        <button [routerLink]="['/', 'login']">Sign In</button>
+                        <button (click)="isAccountMenuOpened = false" [routerLink]="['/', 'login']">Login</button>
                     }
                 </div>
             </div>
