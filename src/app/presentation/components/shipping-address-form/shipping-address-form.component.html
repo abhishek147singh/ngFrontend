@@ -91,7 +91,7 @@
         </div>
 
         <div class="actions">
-            <button class="btn submit" type="submit">Submit</button>
+            <button class="btn submit" [disabled]="shippingForm.invalid" type="submit">Submit</button>
             <button class="btn clear" type="reset">Clear Form</button>
         </div>
     </form>

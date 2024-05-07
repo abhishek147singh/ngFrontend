@@ -300,9 +300,9 @@ $yellow:#FFD333;
                 margin-bottom: 10px;
             }
 
-            p{
-                display: none;
-            }
+            // p{
+            //     display: none;
+            // }
 
             button{
                 display: none;
@@ -310,6 +310,12 @@ $yellow:#FFD333;
         }
     }
 
+    .slider-container{
+        .main-slide-section{
+            height: auto;
+            aspect-ratio: 16/9;
+        }
+    }
     
     .dots-container{
         bottom: 20px;

@@ -101,7 +101,7 @@ $yellow:#FFD333;
 
         .other-details{
             padding: 0 10px;
-            width: calc(100% - 60px);
+            width: calc(100% - 150px);
             text-align: left;
 
             a{
@@ -115,7 +115,7 @@ $yellow:#FFD333;
         }
 
         .price{
-            width: 60px;
+            width: 150px;
             text-align: right;
         }
     }
@@ -124,5 +124,16 @@ $yellow:#FFD333;
 @media screen and (max-width:1250px) {
     .section-container{
         display: block;
+    }
+}
+
+@media screen and (max-width:500px) {
+    .card{
+        padding: 20px;
+
+        .procced-btn{
+            height: 55px;
+            margin-bottom: 0;
+        }
     }
 }

@@ -244,6 +244,17 @@ table{
 }
 
 @media screen and (max-width:500px) {
+
+    .cart-summary-card{
+        .card{
+            padding: 20px;
+
+            .procced-btn{
+                height: 55px;
+                margin-bottom: 0;
+            }
+        }
+    }
     
     table{
         thead{

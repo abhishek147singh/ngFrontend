@@ -4,7 +4,6 @@ $yellow:#FFD333;
 
 .card{
     width: 100%;
-    margin: 10px;
     margin-top: 0;
     background-color: #fff;
 
@@ -13,6 +12,7 @@ $yellow:#FFD333;
         height: calc(100% - 110px);
         overflow: hidden;
         position: relative;
+        max-height: 400px;
 
         img{
             width: 100%;

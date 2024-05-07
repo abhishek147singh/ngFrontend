@@ -20,8 +20,8 @@ import { logout } from '../../../store/auth/auth.action';
   styleUrl: './header.component.scss',
   animations:[
     trigger('expandPanel', [
-      state('collapsed', style({ height: '0'})),
-      state('expanded', style({ height: '*'})),
+      state('collapsed', style({ height: '0', padding:'0'})),
+      state('expanded', style({ height: '*', padding:'*'})),
       transition('collapsed <=> expanded',
         animate('300ms ease-in-out'),
       ),
@@ -52,7 +52,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
   isUserLogined:boolean = false;
   userName:string = '';
 
-
+  isSearchBoxOpened:boolean = false;
 
   constructor(private store:Store<AppState>, private productService:ProductService, private router:Router){}
 
@@ -92,6 +92,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
     this.router.navigate(['/', 'shop'], {
       queryParams:{ query: searchValue, page:1}
     });
+    this.isSearchBoxOpened = false;
   }
 
   logout(){

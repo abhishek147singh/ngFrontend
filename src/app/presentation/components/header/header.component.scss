@@ -5,6 +5,7 @@ $yellow:#FFD333;
 header{
     width: 100%;
     font-family: sans-serif;
+    position: relative;
     
     .upper-header{
         width: 100%;
@@ -96,6 +97,7 @@ header{
         display: flex;
         justify-content: center;
         align-items: center;
+
         button{
             width: 27px;
             height: 27px;
@@ -160,38 +162,37 @@ header{
 
 .search-container{
     justify-content: center;
+}
 
-    .search-box{
-        height: 35px;
-        max-width: 400px;
+.search-box{
+    height: 35px;
+    max-width: 400px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 35px;
+
+
+    input{
         width: 100%;
-        display: grid;
-        grid-template-columns: 1fr 35px;
-
-
-        input{
-            width: 100%;
-            padding: 5px;
-            border: 1px solid #ced4da;
-            color: $light-font-color;
-            outline: none;
-            font-size: 16px;
-            font-weight: 500;
-        }
-
-        button{
-            width: 100%;
-            padding: 5px;
-            border: 1px solid #ced4da;
-            border-left: none;
-            color: $yellow;
-            font-size: 16px;
-            font-weight: 500;
-            background-color: #fff;
-            cursor: pointer;
-        }
+        padding: 5px;
+        border: 1px solid #ced4da;
+        color: $light-font-color;
+        outline: none;
+        font-size: 16px;
+        font-weight: 500;
     }
 
+    button{
+        width: 100%;
+        padding: 5px;
+        border: 1px solid #ced4da;
+        border-left: none;
+        color: $yellow;
+        font-size: 16px;
+        font-weight: 500;
+        background-color: #fff;
+        cursor: pointer;
+    }
 }
 
 .other-details-container{
@@ -344,5 +345,23 @@ header{
             border: 1px solid #ccc;
         }
     }
+}
+
+.header-search-sm-container{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    padding: 15px 20px;
+    background-color: #fff;
+    overflow: hidden;
     
+    .search-box{
+        max-width: calc(100%);
+
+        input{
+            padding-inline: 10px;
+        }
+    }
+
 }

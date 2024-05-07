@@ -62,7 +62,7 @@
                     <div class="value">₹ {{getProductTotal(cartProducts)}}</div>
                 </div>
 
-                <button class="procced-btn" (click)="proccedToCheckout()">Procced To Checkout</button>
+                <button class="procced-btn" [disabled]="cartProducts.length === 0" (click)="proccedToCheckout()">Procced To Checkout</button>
             </div>
         </div>
     </div>

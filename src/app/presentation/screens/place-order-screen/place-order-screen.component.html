@@ -21,7 +21,7 @@
                                 <a [routerLink]="['/', 'product', product.productId]">{{product.Name}}</a>
                             </div>
                             <div class="price">
-                                ₹{{getProductPrice(product.price , product.count)}}
+                                ₹{{product.price}} x {{product.count}} &nbsp; = &nbsp; ₹{{getProductPrice(product.price , product.count)}}
                             </div>
                         </div>
                     </div>

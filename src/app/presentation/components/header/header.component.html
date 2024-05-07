@@ -31,10 +31,10 @@
         </div>
         <div class="nav-container">
             <ul>
-                <li><a href="#">Home</a></li>
+                <li><a routerLink="/">Home</a></li>
                 <li><a [routerLink]="['/','shop']">Shop</a></li>
-                <li><a href="#">Shop Details</a></li>
-                <li><a href="#">Contact</a></li>
+                <!-- <li><a href="#">Shop Details</a></li> -->
+                <li><a routerLink="/contact-us">Contact</a></li>
             </ul>
         </div>
         <div class="freatures-container">
@@ -63,7 +63,7 @@
         </div>
         <div class="freatures-container">
             <div class="search">
-                <button class="search-btn">
+                <button class="search-btn" (click)="isSearchBoxOpened = !isSearchBoxOpened">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
             </div>
@@ -92,11 +92,17 @@
 
         <div class="drop-down" [@expandPanel]="isHeader2Opened ? 'expanded' : 'collapsed'">
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Shop</a></li>
-                <li><a href="#">Shop Details</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a routerLink="/">Home</a></li>
+                <li><a [routerLink]="['/','shop']">Shop</a></li>
+                <!-- <li><a href="#">Shop Details</a></li> -->
+                <li><a routerLink="/contact-us">Contact</a></li>
             </ul>
+        </div>
+    </div>
+    <div class="header-search-sm-container" [@expandPanel]="isSearchBoxOpened ? 'expanded' : 'collapsed'">
+        <div class="search-box">
+            <input type="text" #searchInput2 placeholder="Search for products">
+            <button (click)="onSearch(searchInput2.value)"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
     </div>
 </header>

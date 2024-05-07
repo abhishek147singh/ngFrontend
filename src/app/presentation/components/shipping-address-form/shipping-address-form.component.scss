@@ -79,3 +79,17 @@ $yellow:#FFD333;
         }
     }
 }
+
+@media screen and (max-width:600px) {
+    .shipping-form-container{
+        padding: 20px;
+    }
+
+    .row .col .label-box{
+        font-size: 16px;
+    }
+
+    .actions{
+        margin-top: 20px;
+    }
+}

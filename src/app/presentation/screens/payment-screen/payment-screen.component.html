@@ -18,7 +18,7 @@
                                     <a [routerLink]="['/', 'product', product.productId]">{{product.Name}}</a>
                                 </div>
                                 <div class="price">
-                                    ₹{{getProductPrice(product.price , product.count)}}
+                                    ₹{{product.price}} x {{product.count}} &nbsp; = &nbsp; ₹{{getProductPrice(product.price , product.count)}}
                                 </div>
                             </div>
                         </div>
@@ -84,7 +84,7 @@
                     <div class="value">₹{{getTotal(cartProducts)}}</div>
                 </div>
 
-                <button class="procced-btn">Procced To Payment</button>
+                <button class="procced-btn" (click)="createRzpayOrder('ss')">Procced To Payment</button>
             </div>
         </app-section>
     </div>
