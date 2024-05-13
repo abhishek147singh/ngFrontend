@@ -7,6 +7,7 @@ import { ReviewListItemModel } from "../domain/product/review-list-item.model";
 import { categoryNameListItemModel } from "../domain/product/category-name-list.model";
 import { ProductFilterProductListItemModel } from "../domain/product/product-filter-list.model";
 import { BrandListItemModel } from "../domain/product/brand-list-item.model";
+import { CartItemDetailsModel } from "../domain/product/cart-details-item.model";
 
 export abstract class IProductService{
     abstract getProductList():Observable<ProductListItemModel[]>;
@@ -30,4 +31,6 @@ export abstract class IProductService{
     abstract getCategoryNameList():Observable<categoryNameListItemModel[]>;
 
     abstract getBrandList():Observable<BrandListItemModel[]>;
+
+    abstract getCartProductDetails(productIds:string[]):Observable<CartItemDetailsModel[]>
 }

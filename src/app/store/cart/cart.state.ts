@@ -3,7 +3,8 @@ export interface cartModel{
     Image:string; 
     Name:string; 
     price:number; 
-    count:number; 
+    count:number;
+    maxCount:number; 
 }
 
 export interface cartModelState{

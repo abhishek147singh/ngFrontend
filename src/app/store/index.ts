@@ -2,6 +2,7 @@ import { AUTH_STATE } from "./auth/auth.action";
 import { AuthEffect } from "./auth/auth.effect";
 import { authReducer } from "./auth/auth.reducer";
 import { CART_STATE } from "./cart/cart.action";
+import { CartEffect } from "./cart/cart.effect";
 import { cartReducer } from "./cart/cart.reducer";
 import { SHIPPING_ADD_STATE } from "./shipping-address/shipping-address.action";
 import { ShippingReducer } from "./shipping-address/shipping-address.reducer";
@@ -13,5 +14,6 @@ export const appReducer = {
 };
 
 export const appEffects = [
-    AuthEffect
+    AuthEffect,
+    CartEffect
 ];

@@ -7,4 +7,5 @@ export interface ProductListItemModel{
     reviews:number;
     discount:number;
     img:string;
+    countInStock:number;
 }

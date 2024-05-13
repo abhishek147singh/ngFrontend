@@ -15,7 +15,7 @@ import { shippingAddressStateModel } from '../../../store/shipping-address/shipp
 import { getShippingAdd } from '../../../store/shipping-address/shipping-address.selector';
 import { OrderService } from '../../../service/order.service';
 import { ToasterService } from '../../../service/toaster.service';
-import { clearCart } from '../../../store/cart/cart.action';
+import { clearCart, validateCart } from '../../../store/cart/cart.action';
 
 @Component({
   selector: 'app-place-order-screen',
@@ -64,6 +64,8 @@ export class PlaceOrderScreenComponent implements OnInit, OnDestroy {
     this.shipingStoreSubscription = this.store.select(getShippingAdd).subscribe(shippingState => {
       this.shippingState = shippingState;
     });  
+
+    this.store.dispatch(validateCart({productIds: this.cartProducts.map(p => p.productId)}));
   }
 
   ngOnDestroy(): void {

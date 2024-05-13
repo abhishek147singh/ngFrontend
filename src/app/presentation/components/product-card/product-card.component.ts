@@ -24,15 +24,16 @@ export class ProductCardComponent {
     reviews:0,
     discount:0,
     img:'',
-    noReviews:0
+    noReviews:0,
+    countInStock:0
   };
 
   constructor(private router:Router){}
 
-  @Output() addToCartEmt = new EventEmitter<{ productId:string; Image:string; Name:string; price:number; count:number;}> ();
+  @Output() addToCartEmt = new EventEmitter<{ productId:string; Image:string; Name:string; price:number; count:number; maxCount:number;}> ();
 
   onAddToCart(){
-    this.addToCartEmt.emit({productId:this.productDetails._id, Image:this.productDetails.img, Name:this.productDetails.name, price:this.getActualPrice(this.productDetails.price, this.productDetails.discount) , count:1});
+    this.addToCartEmt.emit({productId:this.productDetails._id, Image:this.productDetails.img, Name:this.productDetails.name, price:this.getActualPrice(this.productDetails.price, this.productDetails.discount) , count:1, maxCount: this.productDetails.countInStock});
   }
 
   getActualPrice(price:number, discount:number){

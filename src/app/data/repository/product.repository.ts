@@ -21,6 +21,8 @@ import { ProductFilterProductListItemModel } from "../../core/domain/product/pro
 import { ProductFilterListEntity } from "../../entity/product/productFilterList.model";
 import { BrandListItemModel } from "../../core/domain/product/brand-list-item.model";
 import { BrandListEntity } from "../../entity/product/brand-list.entity";
+import { CartItemDetailsModel } from "../../core/domain/product/cart-details-item.model";
+import { CartItemDetailsEntity } from "../../entity/product/cartItemDetails.entity";
 
 @Injectable({
     providedIn: 'root'
@@ -183,6 +185,20 @@ export class ProudctRepository extends IProductRepository{
         const url = `${baseUrl}/api/brand/list`;
 
         return this.http.get<BrandListEntity> (url).pipe(
+            map(response => {
+                if (response.status) {
+                    return response.data;
+                }
+
+                throw new Error(response.message);
+            })
+        );
+    }
+
+    override getCartProductDetails(productIds: string[]): Observable<CartItemDetailsModel[]> {
+        const url = `${baseUrl}/api/product/cartProductDetails`;
+
+        return this.http.post<CartItemDetailsEntity> (url, { products:productIds }).pipe(
             map(response => {
                 if (response.status) {
                     return response.data;

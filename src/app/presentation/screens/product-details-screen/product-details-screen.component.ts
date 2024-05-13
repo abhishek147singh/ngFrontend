@@ -137,7 +137,7 @@ export class ProductDetailsScreenComponent implements OnInit, OnDestroy{
       return;
     } 
 
-    this.store.dispatch(addToCart({productId:this.productDetails._id, count:1, Image:this.productDetails.img, Name:this.productDetails.name, price:this.productDetails.price}));
+    this.store.dispatch(addToCart({productId:this.productDetails._id, count:1, Image:this.productDetails.img, Name:this.productDetails.name, price:this.productDetails.price, maxCount: this.productDetails.countInStock}));
     this.toasterService.success('Proudct is added to the cart.');
   }
 }

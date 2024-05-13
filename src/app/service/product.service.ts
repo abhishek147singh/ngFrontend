@@ -10,6 +10,7 @@ import { ReviewListItemModel } from "../core/domain/product/review-list-item.mod
 import { categoryNameListItemModel } from "../core/domain/product/category-name-list.model";
 import { ProductFilterProductListItemModel } from "../core/domain/product/product-filter-list.model";
 import { BrandListItemModel } from "../core/domain/product/brand-list-item.model";
+import { CartItemDetailsModel } from "../core/domain/product/cart-details-item.model";
 
 @Injectable({
     providedIn:'root'
@@ -63,5 +64,9 @@ export class ProductService extends IProductService{
 
     override getBrandList(): Observable<BrandListItemModel[]> {
         return this.productRepository.getBrandList();
+    }
+
+    override getCartProductDetails(productIds: string[]): Observable<CartItemDetailsModel[]> {
+        return this.productRepository.getCartProductDetails(productIds);
     }
 }

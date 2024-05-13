@@ -83,7 +83,8 @@ export class PaymentScreenComponent implements OnInit, OnDestroy {
             count: product.quantity,
             Image: product.img,
             price: product.price,
-            productId: product.product
+            productId: product.product,
+            maxCount: product.quantity
           }
         });
 
