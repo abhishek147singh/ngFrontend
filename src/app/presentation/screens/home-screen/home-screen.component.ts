@@ -107,7 +107,6 @@ export class HomeScreenComponent implements OnInit, OnDestroy{
   addToCart(productDetails:{ productId:string; Image:string; Name:string; price:number; count:number; maxCount:number}){
     this.store.dispatch(addToCart(productDetails));
     this.toasterService.success('Product is added to the cart.');
-    console.log(productDetails);
   }
 
   mapBrandList(brandList:BrandListItemModel[]){

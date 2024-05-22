@@ -12,6 +12,10 @@ import { ProductFilterProductListItemModel } from '../../../core/domain/product/
 import { ToggleMenuComponent } from '../../components/toggle-menu/toggle-menu.component';
 import { PriceFilterComponent } from '../../components/price-filter/price-filter.component';
 import { RatingFilterComponent } from '../../components/rating-filter/rating-filter.component';
+import { AppState } from '../../../store/store.state';
+import { Store } from '@ngrx/store';
+import { addToCart } from '../../../store/cart/cart.action';
+import { ToasterService } from '../../../service/toaster.service';
 
 @Component({
   selector: 'app-filter-product-screen',
@@ -65,7 +69,9 @@ export class FilterProductScreenComponent implements OnInit, OnDestroy{
   constructor(
     private route: ActivatedRoute, 
     private productService:ProductService,
-    private router:Router
+    private router:Router,
+    private store:Store<AppState>,
+    private toaster:ToasterService
   ){}
 
   ngOnInit(): void {
@@ -152,6 +158,11 @@ export class FilterProductScreenComponent implements OnInit, OnDestroy{
       this.page = 1;
       this.changeUrl(category, this.brand, this.query, this.page);
     }
+  }
+
+  addToCart(productDetails:{ productId:string; Image:string; Name:string; price:number; count:number; maxCount:number}){
+    this.store.dispatch(addToCart(productDetails));
+    this.toaster.success('Product is added to the cart.');
   }
 
   mapBrandAndCategoryList(data:{_id: string; name: string; noProducts: number; image: string}[]){

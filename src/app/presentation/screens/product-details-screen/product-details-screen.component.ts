@@ -14,7 +14,7 @@ import { AppState } from '../../../store/store.state';
 import { addToCart, decrementProductCount, incrementProductCount } from '../../../store/cart/cart.action';
 import { ProductModel } from '../../../core/domain/product/product.model';
 import { getCart } from '../../../store/cart/cart.selector';
-import { Observable, Subscription, take } from 'rxjs';
+import { Observable, Subscription, of, switchMap, take, withLatestFrom } from 'rxjs';
 import { ToasterService } from '../../../service/toaster.service';
 import { ProductService } from '../../../service/product.service';
 import { assetsPath } from '../../../../environment';
@@ -22,6 +22,7 @@ import { getAuth } from '../../../store/auth/auth.selector';
 import { ReviewListItemModel } from '../../../core/domain/product/review-list-item.model';
 import { AsyncPipe } from '@angular/common';
 import { ProductListItemModel } from '../../../core/domain/product/product-list-item.model';
+import { ShareModule } from 'ngx-sharebuttons';
 
 @Component({
   selector: 'app-product-details-screen',
@@ -37,7 +38,8 @@ import { ProductListItemModel } from '../../../core/domain/product/product-list-
     ReviewFormComponent, 
     SectionComponent, 
     ProductCardComponent,
-    AsyncPipe
+    AsyncPipe,
+    ShareModule,
   ],
   templateUrl: './product-details-screen.component.html',
   styleUrl: './product-details-screen.component.scss'
@@ -89,15 +91,6 @@ export class ProductDetailsScreenComponent implements OnInit, OnDestroy{
       })
     })
 
-    this.cartSubscription = this.store.select(getCart).subscribe((cartState => {
-      const product = cartState.items.find((product => product.productId === this.productDetails._id));
-
-      if(product){
-        this.isProductAddedInCart = true;
-        this.productCartCount = product.count;
-      }
-    }));
-
     this.routeSubscription = this.route.params.subscribe(routeState => {
       console.log(routeState);
       const productId = routeState['id'];
@@ -114,6 +107,20 @@ export class ProductDetailsScreenComponent implements OnInit, OnDestroy{
 
         this.reviewList = this.productService.getProductReviewList(productId);
       }
+    });
+
+    this.cartSubscription =  this.store.select(getCart).pipe(
+      withLatestFrom(this.route.params),
+      switchMap(([cartState, params]) => {
+        const product = cartState.items.find((product => product.productId === params['id']));
+        if(product){
+          return of({isProductAddedInCart:true, count: product.count});
+        }
+        return of({isProductAddedInCart:false, count: 0});
+      })
+    ).subscribe(productDetails => { 
+      this.isProductAddedInCart = productDetails.isProductAddedInCart;
+      this.productCartCount = productDetails.count;
     });
   }
 
@@ -133,7 +140,6 @@ export class ProductDetailsScreenComponent implements OnInit, OnDestroy{
 
   addToCart(){
     if(this.isProductAddedInCart){
-      this.toasterService.success('Proudct is already added into cart.');
       return;
     } 
 

@@ -30,7 +30,7 @@
             
                 <div class="product-list">
                     @for (product of Products.products; track product._id) {
-                        <app-product-card [productDetails]="product"></app-product-card>
+                        <app-product-card [productDetails]="product" (addToCartEmt)="addToCart($event)"></app-product-card>
                     }@empty {
                         <p>No Product Available!!</p>
                     }

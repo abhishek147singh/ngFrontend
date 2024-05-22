@@ -18,7 +18,7 @@
                 <app-incr-decr-button style="margin-right: 20px;" (decrementEmt)="onDecrement(productDetails._id)" (incrementEmt)="onIncrement(productDetails._id)" [count]="productCartCount"></app-incr-decr-button>
             }
             
-            <div class="add-to-cart-btn" (click)="addToCart()">
+            <div class="add-to-cart-btn" [style.opacity]="isProductAddedInCart ? 0.6 : 1" (click)="addToCart()">
                 <div class="icon">
                     <i class="fa-solid fa-cart-shopping"></i>
                 </div>
@@ -33,10 +33,10 @@
                 Share On
             </div>
             <div class="links">
-                <a routerLink="/" class="link"><i class="fa-brands fa-facebook-f"></i></a>
-                <a routerLink="/" class="link"><i class="fa-brands fa-x-twitter"></i></a>
-                <a routerLink="/" class="link"><i class="fa-brands fa-linkedin"></i></a>
-                <a routerLink="/" class="link"><i class="fa-brands fa-instagram"></i></a>
+                <a shareButton="facebook" class="link"><i class="fa-brands fa-facebook-f"></i></a>
+                <a shareButton="twitter"  class="link"><i class="fa-brands fa-x-twitter"></i></a>
+                <a shareButton="linkedin" class="link"><i class="fa-brands fa-linkedin"></i></a>
+                <a shareButton="whatsapp" class="link"><i class="fa-brands fa-whatsapp"></i></a>
             </div>
         </div>
     </div>
