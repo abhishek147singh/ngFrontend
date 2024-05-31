@@ -33,4 +33,6 @@ export interface OrderModel {
     createdAt: string;
     updatedAt: string;
     __v: number;
+    key:string;
+    orderId:string;
 }

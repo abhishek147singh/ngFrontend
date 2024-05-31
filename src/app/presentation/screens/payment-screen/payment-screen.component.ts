@@ -6,7 +6,6 @@ import { Store } from '@ngrx/store';
 import { Subscription, take } from 'rxjs';
 import { assetsPath } from '../../../../environment';
 import { getAuth } from '../../../store/auth/auth.selector';
-import { getCart } from '../../../store/cart/cart.selector';
 import { cartModel } from '../../../store/cart/cart.state';
 import { AppState } from '../../../store/store.state';
 import { ShippingAddressComponent } from '../../components/shipping-address/shipping-address.component';
@@ -128,19 +127,24 @@ export class PaymentScreenComponent implements OnInit, OnDestroy {
 
   createRzpayOrder(data:any) {
     // call api to create order_id
-    const order_id = '';
-    this.payWithRazor(order_id);
+    if(this.OrderDetials){
+      const order_id = this.OrderDetials.orderId;
+      const amount = Math.floor(this.OrderDetials.totalPrice * 100);
+      const key = this.OrderDetials.key;
+      console.log(amount);
+      this.payWithRazor(key, order_id, amount);
+    }
   }
 
-  payWithRazor(val:any) {
+  payWithRazor(key:string, rzp_order_id:string, amount:number) {
     const options: any = {
-      key: 'rzp_test_key',
-      amount: 125500, // amount should be in paise format to display Rs 1255 without decimal point
+      key: key,
+      amount: amount, // amount should be in paise format to display Rs 1255 without decimal point
       currency: 'INR',
-      name: '', // company name or product name
+      name: 'Naga Ji', // company name or product name
       description: '',  // product description
       image: './assets/logo.png', // company logo or product image
-      order_id: val, // order_id created by you in backend
+      order_id: rzp_order_id, // order_id created by you in backend
       modal: {
         // We should prevent closing of the form when esc key is pressed.
         escape: false,
@@ -155,7 +159,6 @@ export class PaymentScreenComponent implements OnInit, OnDestroy {
     options.handler = ((response:any, error:any) => {
       options.response = response;
       console.log(response);
-      console.log(options);
       // call your backend api to verify payment signature & capture transaction
     });
     options.modal.ondismiss = (() => {
